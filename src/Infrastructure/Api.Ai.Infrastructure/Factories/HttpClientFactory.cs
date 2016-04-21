@@ -17,10 +17,14 @@ namespace Api.Ai.Infrastructure.Factories
 
         #endregion
 
+        #region Contructor
+
         public HttpClientFactory(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
+
+        #endregion
 
         #region IDispatcherFactory Members
 

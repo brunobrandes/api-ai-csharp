@@ -8,9 +8,15 @@ namespace Api.Ai.Domain.DataTransferObject.Request
 {
     public class EntityRequest
     {
+        #region Public Properties
+
         public string Id { get; set; }
         public string Name { get; set; }
         public int Count { get; set; }
         public string Preview { get; set; }
+
+        #endregion
+
+
     }
 }

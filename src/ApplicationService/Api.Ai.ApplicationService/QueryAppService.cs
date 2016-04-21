@@ -8,11 +8,10 @@ using Api.Ai.Domain.DataTransferObject.Request;
 using Api.Ai.Domain.DataTransferObject.Response;
 using Api.Ai.Domain.Service.Interfaces;
 using Api.Ai.Domain.Service.Factories;
-using Api.Ai.Domain.DataTransferObject.Extensions;
 using Api.Ai.Infrastructure.Json;
 using System.Net.Http;
-using System.Web.Http;
 using System.Net;
+using Api.Ai.Domain.DataTransferObject.Extensions;
 
 namespace Api.Ai.ApplicationService
 {
@@ -26,53 +25,7 @@ namespace Api.Ai.ApplicationService
         }
 
         #endregion
-
-        #region Private Methods
-
-        private async Task<string> GetContentResponse(HttpResponseMessage httpResponseMessage)
-        {
-            if (httpResponseMessage == null)
-            {
-                throw new HttpResponseException(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.InternalServerError,
-                    Content = new StringContent("api.ai invalid response. httpResponseMessage is null or empty.")
-                });
-            }
-
-            if (!httpResponseMessage.IsSuccessStatusCode)
-            {
-                throw new HttpResponseException(new HttpResponseMessage
-                {
-                    StatusCode = httpResponseMessage.StatusCode
-                });
-            }
-
-            if (httpResponseMessage.Content == null)
-            {
-                throw new HttpResponseException(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.NoContent,
-                    Content = new StringContent("api.ai conent returned is null.")
-                });
-            }
-
-            var content = await httpResponseMessage.Content.ReadAsStringAsync();
-
-            if (string.IsNullOrEmpty(content))
-            {
-                throw new HttpResponseException(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.NoContent,
-                    Content = new StringContent("api.ai string conent returned is null or empty.")
-                });
-            }
-
-            return content;
-        }
-
-        #endregion
-
+        
         #region IQueryAppService Members
 
         public async Task<QueryResponse> GetQueryAsync(QueryRequest request)
@@ -83,9 +36,15 @@ namespace Api.Ai.ApplicationService
 
                 var httpResponseMessage = await httpClient.GetAsync(new Uri($"{BaseUrl}/{request.ToQueryString()}"));
 
-                var content = await GetContentResponse(httpResponseMessage);
-
-                return ApiAiJson<QueryResponse>.Deserialize(content);
+                if(httpResponseMessage != null)
+                {
+                    var content = await httpResponseMessage.ToStringContentAsync();
+                    return ApiAiJson<QueryResponse>.Deserialize(content);
+                }
+                else
+                {
+                    throw new Exception("Unexpected error GetQueryAsync - httpResponseMessage is null.");
+                }               
             }
         }
 
@@ -101,13 +60,18 @@ namespace Api.Ai.ApplicationService
                     Content = new StringContent(ApiAiJson<QueryRequest>.Serialize(request), Encoding.UTF8, "application/json")
                 });
 
-                var content = await GetContentResponse(httpResponseMessage);
-
-                return ApiAiJson<QueryResponse>.Deserialize(content);
+                if (httpResponseMessage != null)
+                {
+                    var content = await httpResponseMessage.ToStringContentAsync();
+                    return ApiAiJson<QueryResponse>.Deserialize(content);
+                }
+                else
+                {
+                    throw new Exception("Unexpected error GetQueryAsync - httpResponseMessage is null.");
+                }
             }
         }
 
         #endregion
-
     }
 }

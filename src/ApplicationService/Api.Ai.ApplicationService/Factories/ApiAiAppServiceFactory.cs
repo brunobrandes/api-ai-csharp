@@ -29,16 +29,31 @@ namespace Api.Ai.ApplicationService.Factories
 
         public override IQueryAppService CreateQueryAppService(string url, string apiKey)
         {
-            var apiAiAppService = _serviceProvider.GetService(typeof(QueryAppService)) as IQueryAppService;
+            var queryAppService = _serviceProvider.GetService(typeof(QueryAppService)) as IQueryAppService;
 
-            if (apiAiAppService == null)
+            if (queryAppService == null)
             {
-                throw new Exception("ServiceProvider get 'IApiAiAppService<T>' service error.");
+                throw new Exception("ServiceProvider get 'IQueryAppService' service error.");
             }
 
-            apiAiAppService.Initializer(url, apiKey);
+            queryAppService.Initializer(url, apiKey);
 
-            return apiAiAppService;
+            return queryAppService;
+
+        }
+
+        public override ITtsAppService CreateTtsAppService(string url, string apiKey)
+        {
+            var ttsAppService = _serviceProvider.GetService(typeof(TtsAppService)) as ITtsAppService;
+
+            if (ttsAppService == null)
+            {
+                throw new Exception("ServiceProvider get 'ITtsAppService' service error.");
+            }
+
+            ttsAppService.Initializer(url, apiKey);
+
+            return ttsAppService;
 
         }
 

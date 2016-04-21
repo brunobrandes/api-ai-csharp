@@ -27,7 +27,8 @@ parameters in the URL or JSON keys in the POST body
     * [QueryResponse](http://bit.ly/23JTGQE)
 
 * [tts - get text-to-speech](https://docs.api.ai/v12/docs/tts) </br>
-	not implemented
+	* [TtsRequest](http://bit.ly/1XLjFjC)
+	* [TtsResponse](http://bit.ly/1QqBNcy)
 	
 * [entities - manage entities](https://docs.api.ai/v12/docs/entities) </br>
 	not implemented
@@ -149,8 +150,8 @@ json property value:
 
 ### TODO
 
-- [ ] Create tts DTO
-- [ ] Implement TtsAppService
+- [x] Create tts DTO
+- [x] Implement TtsAppService
 - [ ] Create entities DTO
 - [ ] Implement EntitiesAppService
 - [ ] Create userEntities DTO

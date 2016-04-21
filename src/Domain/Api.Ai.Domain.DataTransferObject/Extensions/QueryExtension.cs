@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Api.Ai.Domain.DataTransferObject.Extensions
 {
-    public static class QueryRequestExtension
+    public static class QueryExtension
     {
         public static string ToQueryString(this QueryRequest queryRequest)
         {
@@ -16,7 +16,7 @@ namespace Api.Ai.Domain.DataTransferObject.Extensions
 
             if (queryRequest.Query == null)
             {
-                throw new Exception("Query string 'query' is null or empty.");
+                throw new ArgumentNullException("Query string 'query' is null or empty.");
             }
 
             result += $"&query={queryRequest.Query.FirstOrDefault()}";

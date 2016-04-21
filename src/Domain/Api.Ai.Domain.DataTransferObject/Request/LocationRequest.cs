@@ -8,7 +8,12 @@ namespace Api.Ai.Domain.DataTransferObject.Request
 {
     public class LocationRequest
     {
+        #region Public Properties
+
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+
+        #endregion
+
     }
 }

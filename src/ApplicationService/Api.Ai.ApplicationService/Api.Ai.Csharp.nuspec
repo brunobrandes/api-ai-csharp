@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Api.Ai.Csharp</id>
-        <version>1.0.0.0</version>
+        <version>1.0.0.2</version>
         <title>Api.Ai.Csharp</title>
         <authors>Bruno Brandes</authors>
         <owners>Bruno Brandes</owners>
@@ -10,7 +10,8 @@
         <projectUrl>https://github.com/brunobrandes/api-ai-csharp</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A C# wrapper for the api.ai</description>
-        <releaseNotes>This release contains the query implemented</releaseNotes>
+        <releaseNotes>This release contains the query implemented and tts.</releaseNotes>
+        <copyright>Bruno Brandes</copyright>
         <language>pt-BR</language>
         <dependencies>
             <group targetFramework=".NETFramework4.6.1">

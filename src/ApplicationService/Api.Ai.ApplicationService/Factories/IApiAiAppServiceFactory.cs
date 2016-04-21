@@ -11,5 +11,6 @@ namespace Api.Ai.ApplicationService.Factories
     public interface IApiAiAppServiceFactory
     {
         IQueryAppService CreateQueryAppService(string url, string apiKey);
+        ITtsAppService CreateTtsAppService(string url, string apiKey);
     }
 }

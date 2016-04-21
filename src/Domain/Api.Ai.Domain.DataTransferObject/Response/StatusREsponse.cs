@@ -8,6 +8,8 @@ namespace Api.Ai.Domain.DataTransferObject.Response
 {
     public class StatusResponse
     {
+        #region Public Properties
+
         /// <summary>
         /// HTTP status code
         /// </summary>
@@ -27,5 +29,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// Text details of the error. Only returned if the request failed.
         /// </summary>
         public string ErrorDetails { get; set; }
+
+        #endregion
     }
 }

@@ -8,6 +8,8 @@ namespace Api.Ai.Domain.DataTransferObject.Response
 {
     public class MetadataResponse
     {
+        #region Public Properties
+
         /// <summary>
         /// ID of the intent that produced this result.
         /// </summary>
@@ -20,5 +22,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// Name of the intent that produced this result.
         /// </summary>
         public string IntentName { get; set; }
+
+        #endregion
     }
 }

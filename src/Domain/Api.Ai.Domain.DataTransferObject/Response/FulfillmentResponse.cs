@@ -8,6 +8,8 @@ namespace Api.Ai.Domain.DataTransferObject.Response
 {
     public class FulfillmentResponse
     {
+        #region Public Properties
+
         /// <summary>
         /// ext to be pronounced to the user / shown on the screen
         /// </summary>
@@ -17,5 +19,8 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// Source of the fulfillment / data, e.g. "Wikipedia". Applies only when Domains are enabled for the agent
         /// </summary>
         public string Source { get; set; }
+
+        #endregion
+
     }
 }
