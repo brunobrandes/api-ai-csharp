@@ -12,6 +12,8 @@ namespace Api.Ai.Infrastructure.Json
 {
     public class ApiAiJson<T> 
     {
+        #region Private Fields
+
         private static JsonSerializerSettings _settings = new JsonSerializerSettings()
         {
             NullValueHandling = NullValueHandling.Ignore,
@@ -19,10 +21,18 @@ namespace Api.Ai.Infrastructure.Json
             Formatting = Formatting.Indented
         };
 
+        #endregion
+
+        #region Constructor
+
         static ApiAiJson()
         {
             _settings.Converters.Add(new StringEnumConverter());
         }
+
+        #endregion
+
+        #region Public Methods
 
         public static string Serialize(T t)
         {
@@ -33,5 +43,7 @@ namespace Api.Ai.Infrastructure.Json
         {
             return JsonConvert.DeserializeObject<T>(json, _settings);
         }
+
+        #endregion
     }
 }

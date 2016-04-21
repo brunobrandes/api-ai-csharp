@@ -8,38 +8,14 @@ using System.Threading.Tasks;
 
 namespace Api.Ai.Domain.DataTransferObject.Request
 {
-    public class QueryRequest
+    public class QueryRequest : RequestBase
     {
-        #region Private Fields
-
-        private string _v;
-
-        #endregion
+        #region Public Properties
 
         /// <summary>
         /// The natural language text to be processed. The request can have multiple query parameters. 
         /// </summary>
         public string[] Query { get; set; }
-
-        /// <summary>
-        /// Version of the protocol, e.g. v=20150910
-        /// </summary>
-        public string V
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_v))
-                {
-                    _v = "20150910";
-                }
-
-                return _v;
-            }
-            set
-            {
-                _v = value;
-            }
-        }
 
         /// <summary>
         /// The confidence of the corresponding query parameter having been correctly recognized by a 
@@ -81,5 +57,7 @@ namespace Api.Ai.Domain.DataTransferObject.Request
         /// Latitude and longitude values.
         /// </summary>
         public LocationRequest Location { get; set; }
+
+        #endregion
     }
 }

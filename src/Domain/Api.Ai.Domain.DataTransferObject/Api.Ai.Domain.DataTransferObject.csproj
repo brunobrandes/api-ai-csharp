@@ -41,16 +41,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
-    <Compile Include="Extensions\QueryRequestExtension.cs" />
+    <Compile Include="Extensions\QueryExtension.cs" />
+    <Compile Include="Extensions\TtsExtension.cs" />
     <Compile Include="Request\EntityRequest.cs" />
     <Compile Include="Request\LocationRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\QueryRequest.cs" />
+    <Compile Include="Request\RequestBase.cs" />
+    <Compile Include="Request\TtsRequest.cs" />
     <Compile Include="Response\FulfillmentResponse.cs" />
     <Compile Include="Response\MetadataResponse.cs" />
     <Compile Include="Response\QueryResponse.cs" />
     <Compile Include="Response\ResponseBase.cs" />
     <Compile Include="Response\StatusResponse.cs" />
+    <Compile Include="Response\TtsResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Api.Ai.Domain.Enum\Api.Ai.Domain.Enum.csproj">

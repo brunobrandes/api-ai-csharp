@@ -8,11 +8,18 @@ namespace Api.Ai.Domain.DataTransferObject.Response
 {
     public class QueryResponse : ResponseBase
     {
+        #region Public Properties
+
         public QueryResult Result { get; set; }
+
+        #endregion
+
     }
 
     public class QueryResult
     {
+        #region Public Properties
+
         /// <summary>
         /// Source of the answer. Could be "agent" if the response was retrieved from the agent. 
         /// </summary>
@@ -58,5 +65,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// Contains data on intents and contexts.
         /// </summary>
         public MetadataResponse Metadata { get; set; }
+
+        #endregion
     }
 }

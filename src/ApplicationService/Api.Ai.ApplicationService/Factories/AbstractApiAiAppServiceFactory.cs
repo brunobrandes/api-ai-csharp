@@ -13,6 +13,7 @@ namespace Api.Ai.ApplicationService.Factories
         #region IFullContactAppServiceFactory
 
         public abstract IQueryAppService CreateQueryAppService(string url, string apiKey);
+        public abstract ITtsAppService CreateTtsAppService(string url, string apiKey);
 
         #endregion
     }
