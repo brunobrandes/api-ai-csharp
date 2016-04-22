@@ -22,7 +22,7 @@ namespace Api.Ai.Example.Console
             //Get container api.ai app service factory 
             var apiAiAppServiceFactory = container.GetInstance<IApiAiAppServiceFactory>();
 
-            Query(container, apiAiAppServiceFactory);
+            //Query(container, apiAiAppServiceFactory);
             Tts(container, apiAiAppServiceFactory);
 
             System.Console.ReadLine();
