@@ -67,6 +67,13 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         {
             if (!string.IsNullOrEmpty(path))
             {
+                // Determine whether the directory exists.
+                if (!Directory.Exists(path))
+                {
+                    // Try to create the directory.
+                    DirectoryInfo di = Directory.CreateDirectory(path);
+                }
+                
                 if (_bytes != null && _bytes.Count() > 0)
                 {
                     var fileName = $"{Guid.NewGuid().ToString()}.wav";

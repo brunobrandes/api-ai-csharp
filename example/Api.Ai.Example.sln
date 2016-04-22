@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{5579
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Ai.Example.Console", "Console\Api.Ai.Example.Console\Api.Ai.Example.Console.csproj", "{20D87F02-9C21-49EA-8980-B8417E9D77F1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bot", "Bot", "{01E433B0-0414-4B74-B172-C7F1D3620871}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Ai.Example.Bot.Application", "Bot\Api.Ai.Example.Bot.Application\Api.Ai.Example.Bot.Application.csproj", "{A8BA1066-5695-4D71-ABB4-65E5A5E0C3D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,11 +21,16 @@ Global
 		{20D87F02-9C21-49EA-8980-B8417E9D77F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20D87F02-9C21-49EA-8980-B8417E9D77F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20D87F02-9C21-49EA-8980-B8417E9D77F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8BA1066-5695-4D71-ABB4-65E5A5E0C3D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8BA1066-5695-4D71-ABB4-65E5A5E0C3D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8BA1066-5695-4D71-ABB4-65E5A5E0C3D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8BA1066-5695-4D71-ABB4-65E5A5E0C3D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{20D87F02-9C21-49EA-8980-B8417E9D77F1} = {557976B5-95F6-4400-8323-78053B3BC6D1}
+		{A8BA1066-5695-4D71-ABB4-65E5A5E0C3D4} = {01E433B0-0414-4B74-B172-C7F1D3620871}
 	EndGlobalSection
 EndGlobal

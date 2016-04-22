@@ -13,7 +13,6 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         public QueryResult Result { get; set; }
 
         #endregion
-
     }
 
     public class QueryResult

@@ -48,8 +48,9 @@ parameters in the URL or JSON keys in the POST body
   Query application service.</br>
   Process natural language, either in the form of text or a sound file.
 
-* [TtsAppService]() </br>
-  not implemented
+* [TtsAppService](http://bit.ly/23MJUNG) </br>
+  Tts application service.</br>
+  Used to perform text-to-speech - generate speech (audio file) from text.
   
 * [EntitiesAppService]() </br>
   not implemented
@@ -79,7 +80,7 @@ parameters in the URL or JSON keys in the POST body
   var apiAiAppServiceFactory = container.GetInstance<IApiAiAppServiceFactory>();
   ```
 
-3. Create full contact app service  
+3. Create query app service  
 
   ```csharp
   var queryAppService = apiAiAppServiceFactory.CreateQueryAppService("https://api.api.ai/v1", 
@@ -146,7 +147,12 @@ json property value:
   }
 ```
 
-[Download the example console](http://bit.ly/1SwgSwj) for test your agent :)
+```
+[Download the examples](http://bit.ly/1SwgSwj) for test your agent :)
+```
+
+See [Bot Application Project](http://bit.ly/23MMcfx) sample and create your bot to publish in [Microsoft Bot Framework](https://dev.botframework.com/)</br>
+[Download and install the Bot Application template](http://bit.ly/1TlTL4A)
 
 ### TODO
 
