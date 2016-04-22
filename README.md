@@ -49,7 +49,7 @@ parameters in the URL or JSON keys in the POST body
   Process natural language, either in the form of text or a sound file.
 
 * [TtsAppService](http://bit.ly/23MJUNG) </br>
-  Tts application service
+  Tts application service.</br>
   Used to perform text-to-speech - generate speech (audio file) from text.
   
 * [EntitiesAppService]() </br>
@@ -147,9 +147,11 @@ json property value:
   }
 ```
 
+```
 [Download the examples](http://bit.ly/1SwgSwj) for test your agent :)
+```
 
-See [Bot Application Project](http://bit.ly/23MMcfx) sample and create your bot to publish in [Microsoft Bot Framework](https://dev.botframework.com/)
+See [Bot Application Project](http://bit.ly/23MMcfx) sample and create your bot to publish in [Microsoft Bot Framework](https://dev.botframework.com/)</br>
 [Download and install the Bot Application template](http://bit.ly/1TlTL4A)
 
 ### TODO

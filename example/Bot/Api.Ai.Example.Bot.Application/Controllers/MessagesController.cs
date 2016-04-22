@@ -75,25 +75,35 @@ namespace Api.Ai.Example.Bot.Application
         /// <returns></returns>
         private async Task<string> GetSpeechAsync(Message message)
         {
-            var queryAppService = _apiAiAppServiceFactory.CreateQueryAppService("https://api.api.ai/v1", "YOUR_ACCESS_TOKEN");
+            var result = "Oops! Something went wrong!";
 
-            var queryRequest = new QueryRequest
+            try
             {
-                Query = new string[] { message.Text },
-                Lang = Domain.Enum.Language.English,
-                SessionId = message.Id
-            };
+                var queryAppService = _apiAiAppServiceFactory.CreateQueryAppService("https://api.api.ai/v1", "YOUR_ACCESS_TOKEN");
 
-            var queryResponse = await queryAppService.GetQueryAsync(queryRequest);
+                var queryRequest = new QueryRequest
+                {
+                    Query = new string[] { message.Text },
+                    Lang = Domain.Enum.Language.English,
+                    SessionId = message.Id
+                };
 
-            if (queryResponse != null && queryResponse.Result != null)
-            {
-                return queryResponse.Result.Fulfillment.Speech;
+                var queryResponse = await queryAppService.GetQueryAsync(queryRequest);
+
+                if (queryResponse != null && queryResponse.Result != null)
+                {
+                    if (queryResponse.Status != null)
+                    {
+                        if (queryResponse.Status.Code == (int)HttpStatusCode.OK)
+                        {
+                            result = queryResponse.Result.Fulfillment.Speech;
+                        }
+                    }
+                }
             }
-            else
-            {
-                return "Oops! You can try to repeat that, please?";
-            }
+            catch { }
+
+            return result;
         }
 
         #endregion
@@ -109,7 +119,7 @@ namespace Api.Ai.Example.Bot.Application
             if (message.Type == "Message")
             {
                 var speech = await GetSpeechAsync(message);
-                
+
                 // return our reply to the user
                 return message.CreateReplyMessage(speech);
             }
