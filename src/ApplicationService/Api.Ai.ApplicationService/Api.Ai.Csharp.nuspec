@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Api.Ai.Csharp</id>
-        <version>1.0.0.3</version>
+        <version>1.0.0.4</version>
         <title>Api.Ai.Csharp</title>
         <authors>Bruno Brandes</authors>
         <owners>Bruno Brandes</owners>
@@ -16,6 +16,7 @@
         <dependencies>
             <group targetFramework=".NETFramework4.6.1">
                 <dependency id="Newtonsoft.Json" version="8.0.3" />
+                <dependency id="Microsoft.AspNet.WebApi" version="5.2.3" />
             </group>
         </dependencies>
     </metadata>
