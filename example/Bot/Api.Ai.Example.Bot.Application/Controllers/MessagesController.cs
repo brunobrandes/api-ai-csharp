@@ -79,7 +79,7 @@ namespace Api.Ai.Example.Bot.Application
 
             try
             {
-                var queryAppService = _apiAiAppServiceFactory.CreateQueryAppService("https://api.api.ai/v1", "YOUR_ACCESS_TOKEN");
+                var queryAppService = _apiAiAppServiceFactory.CreateQueryAppService("https://api.api.ai/v1", "ad929088208e4e8c96124d67d0f89a7a");
 
                 var queryRequest = new QueryRequest
                 {
@@ -96,7 +96,14 @@ namespace Api.Ai.Example.Bot.Application
                     {
                         if (queryResponse.Status.Code == (int)HttpStatusCode.OK)
                         {
-                            result = queryResponse.Result.Fulfillment.Speech;
+                            if (queryResponse.Result.Fulfillment != null && string.IsNullOrEmpty(queryResponse.Result.Fulfillment.Speech))
+                            {
+                                result = "Ooops ! I could not understand it.";
+                            }
+                            else
+                            {
+                                result = queryResponse.Result.Fulfillment.Speech;
+                            }
                         }
                     }
                 }
