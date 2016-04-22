@@ -1,7 +1,7 @@
 # C# api.ai 
 
 A C# wrapper for the [api.ai](https://api.ai/).</br>
-This library is a very simple integrate your .NET application on the [api.ai](https://api.ai/)
+This library makes very simple to integrate .NET applications with [api.ai](https://api.ai/)
 
 ## Installation
 
@@ -17,10 +17,9 @@ See api.ai [documentation](https://docs.api.ai/docs) for more details.
 
 ### Structure 
 
-Solution structure (.sln) is based in [The Onion Architecture](http://bit.ly/1r54LZv)
+The solution structure (.sln) is based in [The Onion Architecture](http://bit.ly/1r54LZv)
 
-[DataTranferObject (DTO)](https://en.wikipedia.org/wiki/Data_transfer_object) project, contains the call parameters used as either
-parameters in the URL or JSON keys in the POST body
+[DataTranferObject (DTO)](https://en.wikipedia.org/wiki/Data_transfer_object) project, contains the call parameters used as either parameters in the URL or JSON keys in the POST body
 
 * [query - submit voice or text queries](https://docs.api.ai/v12/docs/query)
     * [QueryRequest](http://bit.ly/1Sb1ljp)
@@ -39,14 +38,14 @@ parameters in the URL or JSON keys in the POST body
 * [intents - manage intents](https://docs.api.ai/v12/docs/intents) </br>
 	not implemented
 	
-[ApplicationService](http://bit.ly/1VEQrF6) project, have to implemented application services.
+[ApplicationService](http://bit.ly/1VEQrF6) project implements the application services.
 
 * [ApiAiAppService](http://bit.ly/240DPd4) </br>
   Base properties and methods of application service.
 
 * [QueryAppService](http://bit.ly/1VC6qUT) </br>
   Query application service.</br>
-  Process natural language, either in the form of text or a sound file.
+  Process natural language in either text form or sound file.
 
 * [TtsAppService](http://bit.ly/23MJUNG) </br>
   Tts application service.</br>
@@ -63,8 +62,7 @@ parameters in the URL or JSON keys in the POST body
   
 ### Usage
 
-1. Using [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection), the configuration of the application with 
-[Simple Injector](https://simpleinjector.org/index.html), might look something like this:
+1. Using [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection), the configuration of the application with [Simple Injector](https://simpleinjector.org/index.html) might look something like this:
 
   ```csharp
     var container = new Container();
@@ -150,8 +148,7 @@ json property value:
 ```
 [Download the examples](http://bit.ly/1SwgSwj) for test your agent :)
 ```
-
-See [Bot Application Project](http://bit.ly/23MMcfx) sample and create your bot to publish in [Microsoft Bot Framework](https://dev.botframework.com/)</br>
+See the [Bot Application Project](http://bit.ly/23MMcfx) sample which contains code of how to create and publish your bot in [Microsoft Bot Framework](https://dev.botframework.com/)</br>
 [Download and install the Bot Application template](http://bit.ly/1TlTL4A)
 
 ### TODO
