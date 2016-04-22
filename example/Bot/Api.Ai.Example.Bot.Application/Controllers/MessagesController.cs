@@ -79,7 +79,7 @@ namespace Api.Ai.Example.Bot.Application
 
             try
             {
-                var queryAppService = _apiAiAppServiceFactory.CreateQueryAppService("https://api.api.ai/v1", "ad929088208e4e8c96124d67d0f89a7a");
+                var queryAppService = _apiAiAppServiceFactory.CreateQueryAppService("https://api.api.ai/v1", "YOUR_ACCESS_TOKEN");
 
                 var queryRequest = new QueryRequest
                 {
