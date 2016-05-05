@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Api.Ai.ApplicationService
 {
-    public class TtsAppService : ApiAiAppService<TtsResponse>, ITtsAppService
+    public class TtsAppService : ApiAiAppService, ITtsAppService
     {
         #region Contructor
 
@@ -24,9 +24,8 @@ namespace Api.Ai.ApplicationService
 
         public async Task<TtsResponse> GetTtsAsync(TtsRequest request)
         {
-            using (var httpClient = HttpClientFactory.Create(TimeSpan.FromSeconds(45)))
+            using (var httpClient = HttpClientFactory.Create(AccessToken))
             {
-                httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AccessToken}");
                 httpClient.DefaultRequestHeaders.Add("Accept-Language", "en-US");
 
                 var httpResponseMessage = await httpClient.GetAsync(new Uri($"{BaseUrl}/{request.ToQueryString()}"));

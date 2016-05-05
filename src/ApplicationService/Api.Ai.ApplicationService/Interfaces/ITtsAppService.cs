@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Api.Ai.ApplicationService.Interfaces
 {
-    public interface ITtsAppService : IApiAiAppService<TtsResponse>
+    public interface ITtsAppService : IApiAiAppService
     {
         Task<TtsResponse> GetTtsAsync(TtsRequest request);
     }

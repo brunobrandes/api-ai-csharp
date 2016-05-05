@@ -9,6 +9,10 @@ namespace Api.Ai.Domain.Service.Factories
 {
     public interface IHttpClientFactory
     {
-        IHttpClient Create(TimeSpan? timeout);
+        IHttpClient Create();
+
+        IHttpClient Create(string accessToken);
+
+        IHttpClient Create(TimeSpan timeout, string accessToken);
     }
 }

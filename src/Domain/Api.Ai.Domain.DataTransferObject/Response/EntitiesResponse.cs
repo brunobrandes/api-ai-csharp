@@ -4,9 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Ai.Domain.DataTransferObject.Request
+namespace Api.Ai.Domain.DataTransferObject.Response
 {
-    public class EntityRequest
+    public class EntitiesResponse
+    {
+        #region Public Properties
+
+        public List<EntityResponse> Entities { get; set; }
+
+        #endregion
+    }
+
+    public class EntityResponse
     {
         #region Public Properties
 
@@ -16,7 +25,5 @@ namespace Api.Ai.Domain.DataTransferObject.Request
         public string Preview { get; set; }
 
         #endregion
-
-
     }
 }

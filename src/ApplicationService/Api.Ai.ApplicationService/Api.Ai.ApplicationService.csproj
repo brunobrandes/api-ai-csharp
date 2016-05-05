@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiAiAppService.cs" />
+    <Compile Include="EntitiesAppService.cs" />
     <Compile Include="Factories\AbstractApiAiAppServiceFactory.cs" />
     <Compile Include="Factories\ApiAiAppServiceFactory.cs" />
     <Compile Include="Factories\IApiAiAppServiceFactory.cs" />

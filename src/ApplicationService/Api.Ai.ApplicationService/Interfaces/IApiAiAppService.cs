@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Api.Ai.ApplicationService.Interfaces
 {
-    public interface IApiAiAppService<T> where T : class
+    public interface IApiAiAppService
     {
         IHttpClientFactory HttpClientFactory { get; }
         
@@ -23,6 +23,11 @@ namespace Api.Ai.ApplicationService.Interfaces
         /// </summary>
         string AccessToken { get; }
 
+        /// <summary>
+        /// Initializer parameters.
+        /// </summary>
+        /// <param name="baseUrl"></param>
+        /// <param name="accessToken"></param>
         void Initializer(string baseUrl, string accessToken);
     }
 }

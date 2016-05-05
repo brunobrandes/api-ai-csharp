@@ -11,7 +11,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         #region Public Properties
 
         /// <summary>
-        /// 	Unique identifier of the result.
+        /// Unique identifier of the result.
         /// </summary>
         public string Id { get; set; }
 
@@ -21,7 +21,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         public DateTime Timestamp { get; set; }
 
         /// <summary>
-        /// 	Contains data on how the request succeeded or failed.
+        /// Contains data on how the request succeeded or failed.
         /// </summary>
         public StatusResponse Status { get; set; }
 

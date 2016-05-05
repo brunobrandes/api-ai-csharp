@@ -9,7 +9,6 @@ namespace Api.Ai.ApplicationService.Factories
 {
     public class ApiAiAppServiceFactory : AbstractApiAiAppServiceFactory
     {
-
         #region Private Fields
 
         private readonly IServiceProvider _serviceProvider;

@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Api.Ai.ApplicationService.Factories;
 using Api.Ai.Domain.Service.Factories;
 using Api.Ai.Domain.DataTransferObject.Request;
+using Api.Ai.Domain.Enum;
 
 namespace Api.Ai.Example.Bot.Application
 {
@@ -75,16 +76,16 @@ namespace Api.Ai.Example.Bot.Application
         /// <returns></returns>
         private async Task<string> GetSpeechAsync(Message message)
         {
-            var result = "Oops! Something went wrong!";
+            var result = "Ooops ! Me desculpe, ainda não sei sobre isso :(";
 
             try
             {
-                var queryAppService = _apiAiAppServiceFactory.CreateQueryAppService("https://api.api.ai/v1", "YOUR_ACCESS_TOKEN");
+                var queryAppService = _apiAiAppServiceFactory.CreateQueryAppService("https://api.api.ai/v1", "f5fb11c7be6d47cdba8be105bf6c862b");
 
                 var queryRequest = new QueryRequest
                 {
                     Query = new string[] { message.Text },
-                    Lang = Domain.Enum.Language.English,
+                    Lang = Language.Portuguese,
                     SessionId = message.Id
                 };
 
@@ -98,7 +99,7 @@ namespace Api.Ai.Example.Bot.Application
                         {
                             if (queryResponse.Result.Fulfillment != null && string.IsNullOrEmpty(queryResponse.Result.Fulfillment.Speech))
                             {
-                                result = "Ooops ! I could not understand it.";
+                                result = "Ooops ! Me desculpe, ainda não sei sobre isso :(";
                             }
                             else
                             {

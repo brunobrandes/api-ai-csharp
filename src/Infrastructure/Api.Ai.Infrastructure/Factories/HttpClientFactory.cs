@@ -28,19 +28,35 @@ namespace Api.Ai.Infrastructure.Factories
 
         #region IDispatcherFactory Members
 
-        public IHttpClient Create(TimeSpan? timeout)
+        /// <summary>
+        /// Create with default timeout 60s
+        /// </summary>
+        /// <returns></returns>
+        public IHttpClient Create()
+        {
+            return Create(TimeSpan.FromSeconds(60), string.Empty);
+        }
+
+        public IHttpClient Create(string accessToken)
+        {
+            return Create(TimeSpan.FromSeconds(60), accessToken);
+        }
+
+        public IHttpClient Create(TimeSpan timeout, string accessToken)
         {
             var result = _serviceProvider.GetService(typeof(ApiAiHttpClient)) as IHttpClient;
 
-            if(result == null)
+            if (result == null)
             {
                 throw new Exception("Unexpected error get service provider ApiAiHttpClient");
             }
 
-            if(timeout.HasValue)
+            if (!string.IsNullOrEmpty(accessToken))
             {
-                result.Timeout = timeout.Value;
-            }            
+                result.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+            }
+
+            result.Timeout = timeout;
 
             return result;
         }

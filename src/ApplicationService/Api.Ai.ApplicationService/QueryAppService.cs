@@ -15,7 +15,7 @@ using Api.Ai.Domain.DataTransferObject.Extensions;
 
 namespace Api.Ai.ApplicationService
 {
-    public class QueryAppService : ApiAiAppService<QueryResponse>, IQueryAppService
+    public class QueryAppService : ApiAiAppService, IQueryAppService
     {
         #region Contructor
 
@@ -30,10 +30,8 @@ namespace Api.Ai.ApplicationService
 
         public async Task<QueryResponse> GetQueryAsync(QueryRequest request)
         {
-            using (var httpClient = HttpClientFactory.Create(TimeSpan.FromSeconds(45)))
+            using (var httpClient = HttpClientFactory.Create(AccessToken))
             {
-                httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AccessToken}");
-
                 var httpResponseMessage = await httpClient.GetAsync(new Uri($"{BaseUrl}/{request.ToQueryString()}"));
 
                 if(httpResponseMessage != null)
@@ -50,10 +48,8 @@ namespace Api.Ai.ApplicationService
 
         public async Task<QueryResponse> PostQueryAsync(QueryRequest request)
         {
-            using (var httpClient = HttpClientFactory.Create(TimeSpan.FromSeconds(45)))
+            using (var httpClient = HttpClientFactory.Create(AccessToken))
             {
-                httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {AccessToken}");
-
                 var httpResponseMessage = await httpClient.PostAsync(new HttpRequestMessage
                 {
                     RequestUri = new Uri($"{BaseUrl}/query?v={request.V}"),

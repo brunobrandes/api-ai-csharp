@@ -10,7 +10,7 @@ using Api.Ai.Infrastructure.Json;
 
 namespace Api.Ai.ApplicationService
 {
-    public class ApiAiAppService<T> : IApiAiAppService<T> where T : class
+    public class ApiAiAppService : IApiAiAppService
     {
         #region Private Fields
 

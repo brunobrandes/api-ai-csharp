@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Api.Ai.ApplicationService.Interfaces
 {
-    public interface IQueryAppService : IApiAiAppService<QueryResponse>
+    public interface IQueryAppService : IApiAiAppService
     {
         Task<QueryResponse> GetQueryAsync(QueryRequest request);
 

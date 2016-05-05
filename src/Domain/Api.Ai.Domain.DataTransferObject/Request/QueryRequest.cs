@@ -46,7 +46,7 @@ namespace Api.Ai.Domain.DataTransferObject.Request
         /// <summary>
         /// Array of entities that replace developer defined entities for this request only. The entity(ies) need to exist in the developer console
         /// </summary>
-        public EntityRequest[] Entities { get; set; }
+        public Entity[] Entities { get; set; }
 
         /// <summary>
         /// Time zone from IANA Time Zone Database. 

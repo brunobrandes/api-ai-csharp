@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Api.Ai.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace Api.Ai.Domain.DataTransferObject.Request
             {
                 if (string.IsNullOrEmpty(_v))
                 {
-                    _v = "20150910";
+                    _v = ApiAiVersion.Default.ToString();
                 }
 
                 return _v;
