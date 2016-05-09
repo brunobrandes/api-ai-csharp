@@ -31,7 +31,7 @@ namespace Api.Ai.ApplicationService.Interfaces
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task<Entity> CreateAsync(Entity entity);
+        Task<string> CreateAsync(Entity entity);
 
         /// <summary>
         /// Adds entries to the specified entity.
@@ -56,7 +56,7 @@ namespace Api.Ai.ApplicationService.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task UpdateASync(string id);
+        Task UpdateAsync(string id);
 
         /// <summary>
         /// Updates entity entries.

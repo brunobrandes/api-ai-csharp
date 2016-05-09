@@ -10,6 +10,7 @@ using Api.Ai.Domain.Service.Factories;
 using Api.Ai.Infrastructure.Json;
 using Api.Ai.Domain.DataTransferObject.Extensions;
 using Api.Ai.Domain.Enum;
+using System.Net.Http;
 
 namespace Api.Ai.ApplicationService
 {
@@ -61,10 +62,34 @@ namespace Api.Ai.ApplicationService
                 }
             }
         }
-        
-        public Task<Entity> CreateAsync(Entity entity)
+
+        public async Task<string> CreateAsync(Entity entity)
         {
-            throw new NotImplementedException();
+            using (var httpClient = HttpClientFactory.Create(AccessToken))
+            {
+                var httpResponseMessage = await httpClient.PostAsync(new HttpRequestMessage
+                {
+                    RequestUri = new Uri($"{BaseUrl}/query?v={ApiAiVersion.Default.ToString()}"),
+                    Content = new StringContent(ApiAiJson<Entity>.Serialize(entity), Encoding.UTF8, "application/json")
+                });
+
+                if (httpResponseMessage != null)
+                {
+                    var content = await httpResponseMessage.ToStringContentAsync();
+                    var responseBase = ApiAiJson<ResponseBase>.Deserialize(content);
+
+                    if (responseBase == null)
+                    {
+                        throw new Exception("Unexpected error on create entity - Deserialize content is null or empty.");
+                    }
+
+                    return responseBase.Id;
+                }
+                else
+                {
+                    throw new Exception("Unexpected error EntitiesAppService - Method: CreateAsync - httpResponseMessage is null.");
+                }
+            }
         }
 
         public Task AddEntriesSpecifiedEntityAsync(string id, List<Entry> entries)
@@ -81,8 +106,8 @@ namespace Api.Ai.ApplicationService
         {
             throw new NotImplementedException();
         }
-        
-        public Task UpdateASync(string id)
+
+        public Task UpdateAsync(string id)
         {
             throw new NotImplementedException();
         }
