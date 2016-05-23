@@ -30,13 +30,16 @@ The solution structure (.sln) is based in [The Onion Architecture](http://bit.ly
 	* [TtsResponse](http://bit.ly/1QqBNcy)
 	
 * [entities - manage entities](https://docs.api.ai/v12/docs/entities) </br>
-	not implemented
+	* [Entity](https://goo.gl/SbpzfL)
+	* [Entry](https://goo.gl/5HyMo6)
+	* [EntitiesResponse](https://goo.gl/u7lfXd)
 	
 * [userEntities - manage user-level entities](https://docs.api.ai/v12/docs/userEntities) </br>
 	not implemented
 	
 * [intents - manage intents](https://docs.api.ai/v12/docs/intents) </br>
 	not implemented
+	
 	
 [ApplicationService](http://bit.ly/1VEQrF6) project implements the application services.
 
@@ -52,7 +55,8 @@ The solution structure (.sln) is based in [The Onion Architecture](http://bit.ly
   Used to perform text-to-speech - generate speech (audio file) from text.
   
 * [EntitiesAppService]() </br>
-  not implemented
+  Entitie application service
+  The entities app service is used to create, retrieve, update and delete developer-defined entity objects.
   
 * [UserEntitiesAppService]() </br>
   not implemented
@@ -155,8 +159,8 @@ See the [Bot Application Project](http://bit.ly/23MMcfx) sample which contains c
 
 - [x] Create tts DTO
 - [x] Implement TtsAppService
-- [ ] Create entities DTO
-- [ ] Implement EntitiesAppService
+- [x] Create entities DTO
+- [x] Implement EntitiesAppService
 - [ ] Create userEntities DTO
 - [ ] Implement UserEntitiesAppService
 - [ ] Create intents DTO
