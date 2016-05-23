@@ -8,10 +8,11 @@ using Api.Ai.Domain.DataTransferObject.Request;
 using Api.Ai.Domain.DataTransferObject.Response;
 using Api.Ai.Domain.Service.Interfaces;
 using Api.Ai.Domain.Service.Factories;
-using Api.Ai.Infrastructure.Json;
 using System.Net.Http;
 using System.Net;
 using Api.Ai.Domain.DataTransferObject.Extensions;
+using Api.Ai.Domain.Service.Serializer;
+using Api.Ai.ApplicationService.Extensions;
 
 namespace Api.Ai.ApplicationService
 {
@@ -25,7 +26,7 @@ namespace Api.Ai.ApplicationService
         }
 
         #endregion
-        
+
         #region IQueryAppService Members
 
         public async Task<QueryResponse> GetQueryAsync(QueryRequest request)
@@ -34,7 +35,7 @@ namespace Api.Ai.ApplicationService
             {
                 var httpResponseMessage = await httpClient.GetAsync(new Uri($"{BaseUrl}/{request.ToQueryString()}"));
 
-                if(httpResponseMessage != null)
+                if (httpResponseMessage != null)
                 {
                     var content = await httpResponseMessage.ToStringContentAsync();
                     return ApiAiJson<QueryResponse>.Deserialize(content);
@@ -42,7 +43,7 @@ namespace Api.Ai.ApplicationService
                 else
                 {
                     throw new Exception("Unexpected error GetQueryAsync - httpResponseMessage is null.");
-                }               
+                }
             }
         }
 
@@ -50,11 +51,8 @@ namespace Api.Ai.ApplicationService
         {
             using (var httpClient = HttpClientFactory.Create(AccessToken))
             {
-                var httpResponseMessage = await httpClient.PostAsync(new HttpRequestMessage
-                {
-                    RequestUri = new Uri($"{BaseUrl}/query?v={request.V}"),
-                    Content = new StringContent(ApiAiJson<QueryRequest>.Serialize(request), Encoding.UTF8, "application/json")
-                });
+                var httpResponseMessage = await httpClient.PostAsync(new Uri($"{BaseUrl}/query?v={request.V}"),
+                    new StringContent(ApiAiJson<QueryRequest>.Serialize(request), Encoding.UTF8, "application/json"));
 
                 if (httpResponseMessage != null)
                 {

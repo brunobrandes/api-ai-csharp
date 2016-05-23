@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace Api.Ai.Domain.DataTransferObject.Extensions
+namespace Api.Ai.ApplicationService.Extensions
 {
     public static class HttpResponseMessageExtension
     {

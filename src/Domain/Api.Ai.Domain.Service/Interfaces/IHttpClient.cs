@@ -16,6 +16,10 @@ namespace Api.Ai.Domain.Service.Interfaces
 
         Task<HttpResponseMessage> GetAsync(Uri url);
 
-        Task<HttpResponseMessage> PostAsync(HttpRequestMessage requestMessage);
+        Task<HttpResponseMessage> PostAsync(Uri requestUri, HttpContent content);
+
+        Task<HttpResponseMessage> PutAsync(Uri requestUri, HttpContent content);
+
+        Task<HttpResponseMessage> DeleteAsync(Uri requestUri);
     }
 }

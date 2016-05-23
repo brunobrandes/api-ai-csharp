@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using Api.Ai.Domain.DataTransferObject;
 using Api.Ai.Domain.DataTransferObject.Response;
 using Api.Ai.Domain.Service.Factories;
-using Api.Ai.Infrastructure.Json;
 using Api.Ai.Domain.DataTransferObject.Extensions;
 using Api.Ai.Domain.Enum;
 using System.Net.Http;
+using Api.Ai.Domain.Service.Serializer;
+using Api.Ai.ApplicationService.Extensions;
 
 namespace Api.Ai.ApplicationService
 {
@@ -27,7 +28,7 @@ namespace Api.Ai.ApplicationService
 
         #region IEntitiesAppService Members
 
-        public async Task<EntitiesResponse> GetAllAsync()
+        public async Task<List<EntityResponse>> GetAllAsync()
         {
             using (var httpClient = HttpClientFactory.Create(AccessToken))
             {
@@ -36,7 +37,7 @@ namespace Api.Ai.ApplicationService
                 if (httpResponseMessage != null)
                 {
                     var content = await httpResponseMessage.ToStringContentAsync();
-                    return ApiAiJson<EntitiesResponse>.Deserialize(content);
+                    return ApiAiJson<List<EntityResponse>>.Deserialize(content);
                 }
                 else
                 {
@@ -49,7 +50,7 @@ namespace Api.Ai.ApplicationService
         {
             using (var httpClient = HttpClientFactory.Create(AccessToken))
             {
-                var httpResponseMessage = await httpClient.GetAsync(new Uri($"{BaseUrl}/entities/{id}?v={ApiAiVersion.Default.ToString()}"));
+                var httpResponseMessage = await httpClient.GetAsync(new Uri($"{BaseUrl}/entities/{id}?v={ApiAiVersion.Default}"));
 
                 if (httpResponseMessage != null)
                 {
@@ -67,11 +68,8 @@ namespace Api.Ai.ApplicationService
         {
             using (var httpClient = HttpClientFactory.Create(AccessToken))
             {
-                var httpResponseMessage = await httpClient.PostAsync(new HttpRequestMessage
-                {
-                    RequestUri = new Uri($"{BaseUrl}/query?v={ApiAiVersion.Default.ToString()}"),
-                    Content = new StringContent(ApiAiJson<Entity>.Serialize(entity), Encoding.UTF8, "application/json")
-                });
+                var httpResponseMessage = await httpClient.PostAsync(new Uri($"{BaseUrl}/entities?v={ApiAiVersion.Default}"),
+                    new StringContent(ApiAiJson<Entity>.Serialize(entity), Encoding.UTF8, "application/json"));
 
                 if (httpResponseMessage != null)
                 {
@@ -83,6 +81,11 @@ namespace Api.Ai.ApplicationService
                         throw new Exception("Unexpected error on create entity - Deserialize content is null or empty.");
                     }
 
+                    if (responseBase.Status.Code != 200)
+                    {
+                        throw new Exception($"Unexpected error on create entity - Invalid response | StatusCode: '{responseBase.Status.Code}'");
+                    }
+
                     return responseBase.Id;
                 }
                 else
@@ -91,33 +94,122 @@ namespace Api.Ai.ApplicationService
                 }
             }
         }
-
-        public Task AddEntriesSpecifiedEntityAsync(string id, List<Entry> entries)
+        
+        public async Task UpdateAsync(Entity entity)
         {
-            throw new NotImplementedException();
+            using (var httpClient = HttpClientFactory.Create(AccessToken))
+            {
+                var httpResponseMessage = await httpClient.PutAsync(new Uri($"{BaseUrl}/entities/{entity.Id}"),
+                    new StringContent(ApiAiJson<Entity>.Serialize(entity), Encoding.UTF8, "application/json"));
+
+                if (httpResponseMessage != null)
+                {
+                    var content = await httpResponseMessage.ToStringContentAsync();
+                    var responseBase = ApiAiJson<ResponseBase>.Deserialize(content);
+
+                    if (responseBase == null)
+                    {
+                        throw new Exception("Unexpected error on create entity - Deserialize content is null or empty.");
+                    }
+
+                    if (responseBase.Status.Code != 200)
+                    {
+                        throw new Exception($"Unexpected error on create entity - Invalid response | StatusCode: '{responseBase.Status.Code}'");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Unexpected error EntitiesAppService - Method: CreateAsync - httpResponseMessage is null.");
+                }
+            }
         }
 
-        public Task CreateUpdateAsync(List<Entity> eintities)
+        public async Task DeleteAsync(string id)
         {
-            throw new NotImplementedException();
+            using (var httpClient = HttpClientFactory.Create(AccessToken))
+            {
+                var httpResponseMessage = await httpClient.DeleteAsync(new Uri($"{BaseUrl}/entities/{id}?v={ApiAiVersion.Default}"));
+
+                if (httpResponseMessage != null)
+                {
+                    var content = await httpResponseMessage.ToStringContentAsync();
+                    var responseBase = ApiAiJson<ResponseBase>.Deserialize(content);
+
+                    if (responseBase == null)
+                    {
+                        throw new Exception("Unexpected error on delete entity - Deserialize content is null or empty.");
+                    }
+
+                    if (responseBase.Status.Code != 200)
+                    {
+                        throw new Exception($"Unexpected error on create entity - Invalid response | StatusCode: '{responseBase.Status.Code}'");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Unexpected error EntitiesAppService - Method: DeleteAsync - httpResponseMessage is null.");
+                }
+            }
         }
 
-        public Task DeleteASync(string id)
+        public async Task AddEntriesSpecifiedEntityAsync(string id, List<Entry> entries)
         {
-            throw new NotImplementedException();
-        }
+            using (var httpClient = HttpClientFactory.Create(AccessToken))
+            {
+                var httpResponseMessage = await httpClient.PostAsync(new Uri($"{BaseUrl}/entities/{id}/entries"),
+                    new StringContent(ApiAiJson<List<Entry>>.Serialize(entries), Encoding.UTF8, "application/json"));
 
-        public Task UpdateAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
+                if (httpResponseMessage != null)
+                {
+                    var content = await httpResponseMessage.ToStringContentAsync();
+                    var responseBase = ApiAiJson<ResponseBase>.Deserialize(content);
 
-        public Task UpdatesEntityEntriesAsync(List<Entry> entries)
+                    if (responseBase == null)
+                    {
+                        throw new Exception("Unexpected error on create entity - Deserialize content is null or empty.");
+                    }
+
+                    if (responseBase.Status.Code != 200)
+                    {
+                        throw new Exception($"Unexpected error on create entity - Invalid response | StatusCode: '{responseBase.Status.Code}'");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Unexpected error EntitiesAppService - Method: CreateAsync - httpResponseMessage is null.");
+                }
+            }
+        }
+        
+        public async Task UpdatesEntityEntriesAsync(string id, List<Entry> entries)
         {
-            throw new NotImplementedException();
+            using (var httpClient = HttpClientFactory.Create(AccessToken))
+            {
+                var httpResponseMessage = await httpClient.PutAsync(new Uri($"{BaseUrl}/entities/{id}/entries"),
+                    new StringContent(ApiAiJson<List<Entry>>.Serialize(entries), Encoding.UTF8, "application/json"));
+
+                if (httpResponseMessage != null)
+                {
+                    var content = await httpResponseMessage.ToStringContentAsync();
+                    var responseBase = ApiAiJson<ResponseBase>.Deserialize(content);
+
+                    if (responseBase == null)
+                    {
+                        throw new Exception("Unexpected error on create entity - Deserialize content is null or empty.");
+                    }
+
+                    if (responseBase.Status.Code != 200)
+                    {
+                        throw new Exception($"Unexpected error on create entity - Invalid response | StatusCode: '{responseBase.Status.Code}'");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Unexpected error EntitiesAppService - Method: CreateAsync - httpResponseMessage is null.");
+                }
+            }
         }
 
         #endregion
-
     }
 }

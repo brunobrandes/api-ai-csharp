@@ -1,5 +1,4 @@
 ﻿using Api.Ai.Domain.Service.Interfaces;
-using Api.Ai.Infrastructure.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +12,9 @@ namespace Api.Ai.Infrastructure.Http
     public class ApiAiHttpClient : IHttpClient
     {
         #region Private Fields
-        
+
         private readonly HttpClient _httpClient;
-        
+
         #endregion
 
         #region Constructor
@@ -54,9 +53,19 @@ namespace Api.Ai.Infrastructure.Http
             return _httpClient.GetAsync(uri);
         }
 
-        public Task<HttpResponseMessage> PostAsync(HttpRequestMessage requestMessage)
+        public Task<HttpResponseMessage> PostAsync(Uri requestUri, HttpContent content)
         {
-            return _httpClient.SendAsync(requestMessage);
+            return _httpClient.PostAsync(requestUri, content);
+        }
+
+        public Task<HttpResponseMessage> PutAsync(Uri requestUri, HttpContent content)
+        {
+            return _httpClient.PutAsync(requestUri.AbsoluteUri, content);
+        }
+
+        public Task<HttpResponseMessage> DeleteAsync(Uri requestUri)
+        {
+            return _httpClient.DeleteAsync(requestUri);
         }
 
         public void Dispose()

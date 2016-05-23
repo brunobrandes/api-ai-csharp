@@ -56,6 +56,21 @@ namespace Api.Ai.ApplicationService.Factories
 
         }
 
+        public override IEntitiesAppService CreateEntitiesAppService(string url, string apiKey)
+        {
+            var entitiesAppService = _serviceProvider.GetService(typeof(EntitiesAppService)) as IEntitiesAppService;
+
+            if (entitiesAppService == null)
+            {
+                throw new Exception("ServiceProvider get 'IEntitiesAppService' service error.");
+            }
+
+            entitiesAppService.Initializer(url, apiKey);
+
+            return entitiesAppService;
+
+        }
+
         #endregion
     }
 }

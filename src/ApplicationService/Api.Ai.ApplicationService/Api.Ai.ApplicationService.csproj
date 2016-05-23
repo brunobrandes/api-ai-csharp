@@ -36,6 +36,14 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +54,7 @@
   <ItemGroup>
     <Compile Include="ApiAiAppService.cs" />
     <Compile Include="EntitiesAppService.cs" />
+    <Compile Include="Extensions\HttpResponseMessageExtension.cs" />
     <Compile Include="Factories\AbstractApiAiAppServiceFactory.cs" />
     <Compile Include="Factories\ApiAiAppServiceFactory.cs" />
     <Compile Include="Factories\IApiAiAppServiceFactory.cs" />
@@ -71,10 +80,6 @@
     <ProjectReference Include="..\..\Domain\Api.Ai.Domain.Service\Api.Ai.Domain.Service.csproj">
       <Project>{0f6f0f2c-1a13-4607-81d8-2449d0e7b6e7}</Project>
       <Name>Api.Ai.Domain.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Api.Ai.Infrastructure\Api.Ai.Infrastructure.csproj">
-      <Project>{bf7434cb-c80d-44a7-9ff0-6aa8ab950b61}</Project>
-      <Name>Api.Ai.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

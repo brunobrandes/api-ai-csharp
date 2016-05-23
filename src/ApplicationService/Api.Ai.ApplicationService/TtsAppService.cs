@@ -3,9 +3,9 @@ using Api.Ai.Domain.DataTransferObject.Extensions;
 using Api.Ai.Domain.DataTransferObject.Request;
 using Api.Ai.Domain.DataTransferObject.Response;
 using Api.Ai.Domain.Service.Factories;
-using Api.Ai.Infrastructure.Json;
 using System;
 using System.Threading.Tasks;
+using Api.Ai.ApplicationService.Extensions;
 
 namespace Api.Ai.ApplicationService
 {

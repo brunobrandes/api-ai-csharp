@@ -26,7 +26,7 @@ namespace Api.Ai.Domain.DataTransferObject.Request
             {
                 if (string.IsNullOrEmpty(_v))
                 {
-                    _v = ApiAiVersion.Default.ToString();
+                    _v = ApiAiVersion.Default;
                 }
 
                 return _v;

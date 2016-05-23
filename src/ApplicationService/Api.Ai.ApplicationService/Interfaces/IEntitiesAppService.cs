@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Api.Ai.ApplicationService.Interfaces
 {
-    public interface IEntitiesAppService
+    public interface IEntitiesAppService : IApiAiAppService
     {
         /// <summary>
         /// Retrieves a list of all entities for the agent.
         /// The following request returns all entities for the agent that is associated with the access token.
         /// </summary>
         /// <returns></returns>
-        Task<EntitiesResponse> GetAllAsync();
+        Task<List<EntityResponse>> GetAllAsync();
 
         /// <summary>
         /// Retrieves the specified entity.
@@ -43,20 +43,12 @@ namespace Api.Ai.ApplicationService.Interfaces
         Task AddEntriesSpecifiedEntityAsync(string id, List<Entry> entries);
 
         /// <summary>
-        /// Creates or updates an array of entities.
-        /// The PUT body consists of an array of entity objects without the "id", "isEnum", and "automatedExpansion" elements.
-        /// </summary>
-        /// <param name="eintities"></param>
-        /// <returns></returns>
-        Task CreateUpdateAsync(List<Entity> eintities);
-
-        /// <summary>
         /// Updates the specified entity.
         /// The following request updates an entity of ID {eid}
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task UpdateAsync(string id);
+        Task UpdateAsync(Entity entity);
 
         /// <summary>
         /// Updates entity entries.
@@ -64,7 +56,7 @@ namespace Api.Ai.ApplicationService.Interfaces
         /// </summary>
         /// <param name="entries"></param>
         /// <returns></returns>
-        Task UpdatesEntityEntriesAsync(List<Entry> entries);
+        Task UpdatesEntityEntriesAsync(string id, List<Entry> entries);
 
         /// <summary>
         /// Deletes the specified entity.
@@ -72,7 +64,7 @@ namespace Api.Ai.ApplicationService.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task DeleteASync(string id);
+        Task DeleteAsync(string id);
 
     }
 }

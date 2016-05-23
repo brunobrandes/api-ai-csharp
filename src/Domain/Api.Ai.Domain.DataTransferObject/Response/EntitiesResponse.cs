@@ -6,15 +6,6 @@ using System.Threading.Tasks;
 
 namespace Api.Ai.Domain.DataTransferObject.Response
 {
-    public class EntitiesResponse
-    {
-        #region Public Properties
-
-        public List<EntityResponse> Entities { get; set; }
-
-        #endregion
-    }
-
     public class EntityResponse
     {
         #region Public Properties

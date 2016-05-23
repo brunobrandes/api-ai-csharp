@@ -1,11 +1,14 @@
 ﻿using Api.Ai.ApplicationService.Factories;
+using Api.Ai.Domain.DataTransferObject;
 using Api.Ai.Domain.DataTransferObject.Request;
 using Api.Ai.Domain.DataTransferObject.Response;
 using Api.Ai.Domain.Service.Factories;
+using Api.Ai.Domain.Service.Serializer;
 using Api.Ai.Infrastructure.Factories;
-using Api.Ai.Infrastructure.Json;
 using SimpleInjector;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Api.Ai.Example.Console
 {
@@ -22,8 +25,9 @@ namespace Api.Ai.Example.Console
             //Get container api.ai app service factory 
             var apiAiAppServiceFactory = container.GetInstance<IApiAiAppServiceFactory>();
 
-            //Query(container, apiAiAppServiceFactory);
+            Query(container, apiAiAppServiceFactory);
             Tts(container, apiAiAppServiceFactory);
+            Entity(container, apiAiAppServiceFactory);
 
             System.Console.ReadLine();
         }
@@ -48,7 +52,7 @@ namespace Api.Ai.Example.Console
             System.Console.Write(ApiAiJson<QueryResponse>.Serialize(queryResponse));
         }
 
-        private static void Tts(Container container,IApiAiAppServiceFactory apiAiAppServiceFactory)
+        private static void Tts(Container container, IApiAiAppServiceFactory apiAiAppServiceFactory)
         {
             ///Create full contact app service  
             var ttsAppService = apiAiAppServiceFactory.CreateTtsAppService("https://api.api.ai/v1", "YOUR_ACCESS_TOKEN");
@@ -65,14 +69,52 @@ namespace Api.Ai.Example.Console
             /// Call api.ai query by get 
             var ttsResponse = ttsAppService.GetTtsAsync(ttsRequest).Result;
 
-            if(ttsResponse == null)
+            if (ttsResponse == null)
             {
                 throw new Exception("tts error - Get tts async returned null");
             }
 
-            var fileName =  ttsResponse.WriteToFile(path).Result;
+            var fileName = ttsResponse.WriteToFile(path).Result;
 
             System.Console.Write($"File created: {path}\\{fileName}");
+        }
+
+        private static void Entity(Container container, IApiAiAppServiceFactory apiAiAppServiceFactory)
+        {
+            var entityAppService = apiAiAppServiceFactory.CreateEntitiesAppService("https://api.api.ai/v1", "YOUR_ACCESS_TOKEN");
+
+            var entities = entityAppService.GetAllAsync().Result;
+
+            if (entities != null)
+            {
+                System.Console.Write($"{entities.Count} entities found.");
+
+                var entity = entityAppService.GetByIdAsync(entities.FirstOrDefault().Id).Result;
+            }
+
+            try
+            {
+                var newEntity = new Entity { Name = "test", Entries = new List<Entry> { { new Entry { Value = "test", Synonyms = new List<string> { "test" } } } } };
+
+                newEntity.Id = entityAppService.CreateAsync(new Entity { Name = "test", Entries = new List<Entry> { { new Entry { Value = "test", Synonyms = new List<string> { "test" } } } } }).Result;
+
+                if (!string.IsNullOrEmpty(newEntity.Id))
+                {
+                    entityAppService.AddEntriesSpecifiedEntityAsync(newEntity.Id, new List<Entry> { { new Entry { Value = "test-2", Synonyms = new List<string> { "a", "b" } } } }).Wait();
+
+                    entityAppService.UpdatesEntityEntriesAsync(newEntity.Id, new List<Entry> { { new Entry { Value = "test-2", Synonyms = new List<string> { "c", "d" } } } }).Wait();
+
+                    newEntity.Name = "test-up";
+
+                    entityAppService.UpdateAsync(newEntity).Wait();
+
+                    entityAppService.DeleteAsync(newEntity.Id).Wait();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Console.Write($"Error - {ex.ToString()}");
+            }
         }
 
         #endregion

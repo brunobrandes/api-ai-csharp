@@ -1,5 +1,4 @@
-﻿using Api.Ai.Domain.Service.Interfaces;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -8,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Ai.Infrastructure.Json
+namespace Api.Ai.Domain.Service.Serializer
 {
-    public class ApiAiJson<T> 
+    public class ApiAiJson<T>
     {
         #region Private Fields
 
@@ -18,7 +17,8 @@ namespace Api.Ai.Infrastructure.Json
         {
             NullValueHandling = NullValueHandling.Ignore,
             ContractResolver = new CamelCasePropertyNamesContractResolver(),
-            Formatting = Formatting.Indented
+            Formatting = Formatting.Indented,
+            DefaultValueHandling = DefaultValueHandling.Ignore
         };
 
         #endregion
