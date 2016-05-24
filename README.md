@@ -149,23 +149,24 @@ json property value:
   }
 ```
 
-```
-[Download the examples](http://bit.ly/1SwgSwj) for test your agent :)
-```
-See the [Bot Application Project](http://bit.ly/23MMcfx) sample which contains code of how to create and publish your bot in [Microsoft Bot Framework](https://dev.botframework.com/)</br>
+[Download the examples](http://bit.ly/1SwgSwj) for test your agent :) </br>
+
+See the [Bot Application Project](http://bit.ly/23MMcfx) sample which contains code of how to create</br>
+and publish your bot in [Microsoft Bot Framework](https://dev.botframework.com/) </br>
+
 [Download and install the Bot Application template](http://bit.ly/1TlTL4A)
 
 ### TODO
 
-- [x] Create tts DTO
+- [x] Create tts DataTranferObject
 - [x] Implement TtsAppService
-- [x] Create entities DTO
+- [x] Create entities DataTranferObject
 - [x] Implement EntitiesAppService
-- [ ] Create userEntities DTO
+- [ ] Create userEntities DataTranferObject
 - [ ] Implement UserEntitiesAppService
-- [ ] Create intents DTO
+- [ ] Create intents DataTranferObject
 - [ ] Implement IntentsAppService
-- [ ] Write new unit tests
+- [ ] Write unit tests
 
 ### License
 
