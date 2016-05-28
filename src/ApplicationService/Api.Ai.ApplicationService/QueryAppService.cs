@@ -33,7 +33,7 @@ namespace Api.Ai.ApplicationService
         {
             using (var httpClient = HttpClientFactory.Create(AccessToken))
             {
-                var httpResponseMessage = await httpClient.GetAsync(new Uri($"{BaseUrl}/{request.ToQueryString()}"));
+                var httpResponseMessage = await httpClient.GetAsync(new Uri($"{BaseUrl}/{request.ToHttpGetQueryString()}"));
 
                 if (httpResponseMessage != null)
                 {
@@ -51,7 +51,7 @@ namespace Api.Ai.ApplicationService
         {
             using (var httpClient = HttpClientFactory.Create(AccessToken))
             {
-                var httpResponseMessage = await httpClient.PostAsync(new Uri($"{BaseUrl}/query?v={request.V}"),
+                var httpResponseMessage = await httpClient.PostAsync(new Uri($"{BaseUrl}/{request.ToHttpPostQueryString()}"),
                     new StringContent(ApiAiJson<QueryRequest>.Serialize(request), Encoding.UTF8, "application/json"));
 
                 if (httpResponseMessage != null)

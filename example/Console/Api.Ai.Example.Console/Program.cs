@@ -26,8 +26,8 @@ namespace Api.Ai.Example.Console
             var apiAiAppServiceFactory = container.GetInstance<IApiAiAppServiceFactory>();
 
             Query(container, apiAiAppServiceFactory);
-            Tts(container, apiAiAppServiceFactory);
-            Entity(container, apiAiAppServiceFactory);
+            //Tts(container, apiAiAppServiceFactory);
+            //Entity(container, apiAiAppServiceFactory);
 
             System.Console.ReadLine();
         }
@@ -37,7 +37,7 @@ namespace Api.Ai.Example.Console
         private static void Query(Container container, IApiAiAppServiceFactory apiAiAppServiceFactory)
         {
             ///Create full contact app service  
-            var queryAppService = apiAiAppServiceFactory.CreateQueryAppService("https://api.api.ai/v1", "YOUR_ACCESS_TOKEN");
+            var queryAppService = apiAiAppServiceFactory.CreateQueryAppService("https://api.api.ai/v1", "9666691cde644c22b3dfa82d11e3d7fb");
 
             ///Create query request
             var queryRequest = new QueryRequest

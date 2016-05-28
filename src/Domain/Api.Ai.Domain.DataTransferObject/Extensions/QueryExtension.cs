@@ -10,7 +10,7 @@ namespace Api.Ai.Domain.DataTransferObject.Extensions
 {
     public static class QueryExtension
     {
-        public static string ToQueryString(this QueryRequest queryRequest)
+        private static string ToQueryString(this QueryRequest queryRequest)
         {
             string result = $"/query?v={queryRequest.V}";
 
@@ -18,6 +18,13 @@ namespace Api.Ai.Domain.DataTransferObject.Extensions
             {
                 throw new ArgumentNullException("Query string 'query' is null or empty.");
             }
+
+            return result;
+        }
+
+        public static string ToHttpGetQueryString(this QueryRequest queryRequest)
+        {
+            string result = ToQueryString(queryRequest);
 
             result += $"&query={queryRequest.Query.FirstOrDefault()}";
 
@@ -50,6 +57,11 @@ namespace Api.Ai.Domain.DataTransferObject.Extensions
             }
 
             return result;
+        }
+
+        public static string ToHttpPostQueryString(this QueryRequest queryRequest)
+        {
+            return ToQueryString(queryRequest);
         }
     }
 }
