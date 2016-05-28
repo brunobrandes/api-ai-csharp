@@ -99,10 +99,16 @@ The solution structure (.sln) is based in [The Onion Architecture](http://bit.ly
   };
   ```
 
-5. Call api.ai query by get
+5. Call api.ai query by http get method
 
   ```csharp
   var queryResponse = await queryAppService.GetQueryAsync(queryRequest);
+  ```
+  
+  5.1 Or call api.ai query by http post method
+
+  ```csharp
+  var queryResponse = await queryAppService.PostQueryAsync(queryRequest);
   ```
 
 Use [ApiAiJson](http://bit.ly/1Qo3h2F) to Serialize/Deserialize response.
