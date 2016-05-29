@@ -58,6 +58,7 @@
     <Compile Include="Response\ResponseBase.cs" />
     <Compile Include="Response\StatusResponse.cs" />
     <Compile Include="Response\TtsResponse.cs" />
+    <Compile Include="Response\WebhookResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Api.Ai.Domain.Enum\Api.Ai.Domain.Enum.csproj">

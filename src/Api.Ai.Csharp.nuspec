@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Api.Ai.Csharp</id>
-        <version>1.0.0.6</version>
+        <version>1.0.0.7</version>
         <title>Api.Ai.Csharp</title>
         <authors>Bruno Brandes</authors>
         <owners>Bruno Brandes</owners>
