@@ -1,5 +1,7 @@
 ﻿using Api.Ai.Domain.DataTransferObject.Request;
 using Api.Ai.Domain.Enum;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;

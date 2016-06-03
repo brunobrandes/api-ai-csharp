@@ -17,8 +17,7 @@ namespace Api.Ai.Domain.Service.Serializer
         {
             NullValueHandling = NullValueHandling.Ignore,
             ContractResolver = new CamelCasePropertyNamesContractResolver(),
-            Formatting = Formatting.Indented,
-            DefaultValueHandling = DefaultValueHandling.Ignore
+            Formatting = Formatting.Indented
         };
 
         #endregion

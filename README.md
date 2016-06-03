@@ -40,6 +40,9 @@ The solution structure (.sln) is based in [The Onion Architecture](http://bit.ly
 * [intents - manage intents](https://docs.api.ai/v12/docs/intents) </br>
 	not implemented
 	
+* [wehook - receiving](https://docs.api.ai/docs/webhook) </br>
+	* [WebhookResponse](https://goo.gl/f3q2dr)
+	
 	
 [ApplicationService](http://bit.ly/1VEQrF6) project implements the application services.
 
@@ -105,7 +108,7 @@ The solution structure (.sln) is based in [The Onion Architecture](http://bit.ly
   var queryResponse = await queryAppService.GetQueryAsync(queryRequest);
   ```
   
-  5.1 Or call api.ai query by http post method
+  5.1 Or call api.ai query by http post method (recommended)
 
   ```csharp
   var queryResponse = await queryAppService.PostQueryAsync(queryRequest);
@@ -168,6 +171,7 @@ and publish your bot in [Microsoft Bot Framework](https://dev.botframework.com/)
 - [x] Implement TtsAppService
 - [x] Create entities DataTranferObject
 - [x] Implement EntitiesAppService
+- [x] Create webhook DataTranferObject
 - [ ] Create userEntities DataTranferObject
 - [ ] Implement UserEntitiesAppService
 - [ ] Create intents DataTranferObject

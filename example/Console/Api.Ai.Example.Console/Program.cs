@@ -26,8 +26,8 @@ namespace Api.Ai.Example.Console
             var apiAiAppServiceFactory = container.GetInstance<IApiAiAppServiceFactory>();
 
             Query(container, apiAiAppServiceFactory);
-            //Tts(container, apiAiAppServiceFactory);
-            //Entity(container, apiAiAppServiceFactory);
+            Tts(container, apiAiAppServiceFactory);
+            Entity(container, apiAiAppServiceFactory);
 
             System.Console.ReadLine();
         }
@@ -47,7 +47,7 @@ namespace Api.Ai.Example.Console
             };
 
             /// Call api.ai query by get 
-            var queryResponse = queryAppService.GetQueryAsync(queryRequest).Result;
+            var queryResponse = queryAppService.PostQueryAsync(queryRequest).Result;
 
             System.Console.Write(ApiAiJson<QueryResponse>.Serialize(queryResponse));
         }

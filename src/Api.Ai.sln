@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationService", "Appli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Ai.ApplicationService", "ApplicationService\Api.Ai.ApplicationService\Api.Ai.ApplicationService.csproj", "{6848EDCA-4533-4BFF-AEC9-C8F984B74521}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{4F318574-5A41-4D90-8992-9442C0BE809F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

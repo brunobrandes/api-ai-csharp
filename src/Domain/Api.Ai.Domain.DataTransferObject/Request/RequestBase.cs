@@ -1,4 +1,5 @@
 ﻿using Api.Ai.Domain.Enum;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace Api.Ai.Domain.DataTransferObject.Request
         /// <summary>
         /// Version of the protocol, e.g. v=20150910
         /// </summary>
+        [JsonIgnore]
         public string V
         {
             get

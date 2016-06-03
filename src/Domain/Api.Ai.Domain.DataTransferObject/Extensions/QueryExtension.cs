@@ -12,7 +12,7 @@ namespace Api.Ai.Domain.DataTransferObject.Extensions
     {
         private static string ToQueryString(this QueryRequest queryRequest)
         {
-            string result = $"/query?v={queryRequest.V}";
+            string result = $"query?v={queryRequest.V}";
 
             if (queryRequest.Query == null)
             {
