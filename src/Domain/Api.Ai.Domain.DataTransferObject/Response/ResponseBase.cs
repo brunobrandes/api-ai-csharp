@@ -25,6 +25,11 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// </summary>
         public StatusResponse Status { get; set; }
 
+        /// <summary>
+        /// Session id informed on request.
+        /// </summary>
+        public string SessionId { get; set; }
+
         #endregion
     }
 }
