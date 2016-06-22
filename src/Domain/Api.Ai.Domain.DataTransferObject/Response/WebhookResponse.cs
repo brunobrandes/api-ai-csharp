@@ -32,7 +32,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// <summary>
         /// Data source
         /// </summary>
-        public string source { get; set; }
+        public string Source { get; set; }
 
     }
 }

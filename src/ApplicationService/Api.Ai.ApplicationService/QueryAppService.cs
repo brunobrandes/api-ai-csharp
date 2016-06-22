@@ -37,15 +37,8 @@ namespace Api.Ai.ApplicationService
 
                 var httpResponseMessage = await httpClient.GetAsync(uri);
 
-                if (httpResponseMessage != null)
-                {
-                    var content = await httpResponseMessage.ToStringContentAsync();
-                    return ApiAiJson<QueryResponse>.Deserialize(content);
-                }
-                else
-                {
-                    throw new Exception("Unexpected error GetQueryAsync - httpResponseMessage is null.");
-                }
+                var content = await httpResponseMessage.ToStringContentAsync();
+                return ApiAiJson<QueryResponse>.Deserialize(content);
             }
         }
 
@@ -59,15 +52,8 @@ namespace Api.Ai.ApplicationService
 
                 var httpResponseMessage = await httpClient.PostAsync(uri, new StringContent(queryRequestJson, Encoding.UTF8, "application/json"));
 
-                if (httpResponseMessage != null)
-                {
-                    var content = await httpResponseMessage.ToStringContentAsync();
-                    return ApiAiJson<QueryResponse>.Deserialize(content);
-                }
-                else
-                {
-                    throw new Exception("Unexpected error GetQueryAsync - httpResponseMessage is null.");
-                }
+                var content = await httpResponseMessage.ToStringContentAsync();
+                return ApiAiJson<QueryResponse>.Deserialize(content);
             }
         }
 

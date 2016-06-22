@@ -50,22 +50,50 @@ namespace Api.Ai.Infrastructure.Http
 
         public Task<HttpResponseMessage> GetAsync(Uri uri)
         {
-            return _httpClient.GetAsync(uri);
+            var httpResponseMessage = _httpClient.GetAsync(uri);
+
+            if (httpResponseMessage == null)
+            {
+                throw new Exception("Get async error - Http response message is null.");
+            }
+
+            return httpResponseMessage;
         }
 
         public Task<HttpResponseMessage> PostAsync(Uri requestUri, HttpContent content)
         {
-            return _httpClient.PostAsync(requestUri, content);
+            var httpResponseMessage = _httpClient.PostAsync(requestUri, content);
+
+            if (httpResponseMessage == null)
+            {
+                throw new Exception("Post async error - Http response message is null.");
+            }
+
+            return httpResponseMessage;
         }
 
         public Task<HttpResponseMessage> PutAsync(Uri requestUri, HttpContent content)
         {
-            return _httpClient.PutAsync(requestUri.AbsoluteUri, content);
+            var httpResponseMessage = _httpClient.PutAsync(requestUri.AbsoluteUri, content);
+
+            if (httpResponseMessage == null)
+            {
+                throw new Exception("Put async error - Http response message is null.");
+            }
+
+            return httpResponseMessage;
         }
 
         public Task<HttpResponseMessage> DeleteAsync(Uri requestUri)
         {
-            return _httpClient.DeleteAsync(requestUri);
+            var httpResponseMessage = _httpClient.DeleteAsync(requestUri);
+
+            if (httpResponseMessage == null)
+            {
+                throw new Exception("Delete async error - Http response message is null.");
+            }
+
+            return httpResponseMessage;
         }
 
         public void Dispose()

@@ -30,15 +30,8 @@ namespace Api.Ai.ApplicationService
 
                 var httpResponseMessage = await httpClient.GetAsync(new Uri($"{BaseUrl}/{request.ToQueryString()}"));
 
-                if (httpResponseMessage != null)
-                {
-                    var content = await httpResponseMessage.ToStreamContentAsync();
-                    return new TtsResponse(content);
-                }
-                else
-                {
-                    throw new Exception("Unexpected error GetQueryAsync - httpResponseMessage is null.");
-                }
+                var content = await httpResponseMessage.ToStreamContentAsync();
+                return new TtsResponse(content);
             }
         }
 

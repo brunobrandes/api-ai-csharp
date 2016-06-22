@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,23 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// Text details of the error. Only returned if the request failed.
         /// </summary>
         public string ErrorDetails { get; set; }
+
+        /// <summary>
+        /// Check Code http status is success (200).
+        /// </summary>
+        [JsonIgnore]
+        public bool IsSuccessStatusCode
+        {
+            get
+            {
+                if (Code == 200)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
 
         #endregion
     }
