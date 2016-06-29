@@ -10,7 +10,7 @@ namespace Api.Ai.Domain.DataTransferObject
     {
         public string Name { get; set; }
         
-        public Dictionary<string, string> Parameters { get; set; }
+        public Dictionary<string, object> Parameters { get; set; }
         
         public int? Lifespan { get; set; }
     }

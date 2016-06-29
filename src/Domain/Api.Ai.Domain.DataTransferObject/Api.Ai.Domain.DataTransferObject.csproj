@@ -46,10 +46,12 @@
   <ItemGroup>
     <Compile Include="ApiAiVersion.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="Parameters\Date.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Entry.cs" />
     <Compile Include="Extensions\QueryExtension.cs" />
     <Compile Include="Extensions\TtsExtension.cs" />
+    <Compile Include="Parameters\DatePeriod.cs" />
     <Compile Include="Response\EntitiesResponse.cs" />
     <Compile Include="Request\LocationRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

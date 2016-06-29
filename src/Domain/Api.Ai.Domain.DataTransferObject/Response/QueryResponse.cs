@@ -47,7 +47,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// <summary>
         /// Parameters to be used by the action.
         /// </summary>
-        public Dictionary<string, string> Parameters { get; set; }
+        public Dictionary<string, object> Parameters { get; set; }
 
 
         /// <summary>
@@ -97,11 +97,11 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// <param name="name"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public string GetContextParameterValueByNameKey(string name, string key)
+        public object GetContextParameterValueByNameKey(string name, string key)
         {
             var context = GetContextByName(name);
 
-            var result = string.Empty;
+            object result = null;
 
             if (!context.Parameters.TryGetValue(key, out result))
             {
@@ -116,14 +116,14 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public string GetParameterValueByKey(string key)
+        public object GetParameterValueByKey(string key)
         {
             if (this.Contexts == null || this.Contexts.Count() == 0)
             {
                 throw new NullReferenceException("Contexts is null or empty.");
             }
 
-            var result = string.Empty;
+            object result = null;
 
             foreach (var context in this.Contexts)
             {
@@ -135,7 +135,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
 
             throw new KeyNotFoundException($"Parameter '{key}' not found.");
         }
-
+        
         #endregion
     }
 }

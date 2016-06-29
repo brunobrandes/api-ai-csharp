@@ -3,6 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Api.Ai.Domain.DataTransferObject.Request;
 using Api.Ai.Domain.DataTransferObject.Response;
 using Api.Ai.Domain.Service.Serializer;
+using System.Collections.Generic;
+using Api.Ai.Domain.DataTransferObject.Parameters;
+using Api.Ai.Domain.DataTransferObject;
 
 namespace Api.Ai.Test.Unit
 {
@@ -23,13 +26,30 @@ namespace Api.Ai.Test.Unit
 
         private QueryResponse GetQueryResponse()
         {
-            return new QueryResponse
+            var queryResponse = new QueryResponse
             {
                 Id = Guid.NewGuid().ToString(),
                 SessionId = "1",
                 Status = new StatusResponse { Code = 200 },
-                Timestamp = DateTime.Now
+                Timestamp = DateTime.Now,
+                Result = new QueryResult
+                {
+                    Contexts = new Context[1]
+                    {
+                        new Context
+                        {
+                            Name = "context-1",
+                            Parameters = new Dictionary<string, object>()
+                            {
+                                {  "parameter-key-1", "parameter-valeu-1" },
+                                { "parameter-key-2",  new DatePeriod {  EndDate = new Date { Calendar = 1470841200000 }, StartDate = new Date { Calendar = 1470841200000 } } }
+                            }
+                        }
+                    }
+                }
             };
+
+            return queryResponse;
         }
 
         private WebhookResponse GetWebhookResponse()
@@ -46,7 +66,7 @@ namespace Api.Ai.Test.Unit
         #region Test Methods
 
         [TestMethod]
-        public void SerializeDeserializeQueryRequest()
+        public void Serialize_Deserialize_QueryRequest()
         {
             var queryRequest = GetQueryRequest();
 
@@ -60,9 +80,11 @@ namespace Api.Ai.Test.Unit
         }
 
         [TestMethod]
-        public void SerializeDeserializeQueryResponse()
+        public void Serialize_Deserialize_QueryResponse()
         {
             var queryResponse = GetQueryResponse();
+
+            var datePeriod = queryResponse.Result.GetParameterValueByKey("parameter-key-2");
 
             var json = ApiAiJson<QueryResponse>.Serialize(queryResponse);
 
@@ -72,9 +94,9 @@ namespace Api.Ai.Test.Unit
 
             Assert.IsTrue(queryResponse.Id == deserializeQueryResponse.Id);
         }
-
+        
         [TestMethod]
-        public void SerializeDeserializeWebhookResponse()
+        public void Serialize_Deserialize_WebhookResponse()
         {
             var webhookResponse = GetWebhookResponse();
 
