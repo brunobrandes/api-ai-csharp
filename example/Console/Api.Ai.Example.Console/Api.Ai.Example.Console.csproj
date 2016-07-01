@@ -34,23 +34,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Api.Ai.ApplicationService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Api.Ai.Csharp.1.0.1.6\lib\net461\Api.Ai.ApplicationService.dll</HintPath>
+      <HintPath>..\..\packages\Api.Ai.Csharp.1.0.1.7\lib\net461\Api.Ai.ApplicationService.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Api.Ai.Domain.DataTransferObject, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Api.Ai.Csharp.1.0.1.6\lib\net461\Api.Ai.Domain.DataTransferObject.dll</HintPath>
+      <HintPath>..\..\packages\Api.Ai.Csharp.1.0.1.7\lib\net461\Api.Ai.Domain.DataTransferObject.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Api.Ai.Domain.Enum, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Api.Ai.Csharp.1.0.1.6\lib\net461\Api.Ai.Domain.Enum.dll</HintPath>
+      <HintPath>..\..\packages\Api.Ai.Csharp.1.0.1.7\lib\net461\Api.Ai.Domain.Enum.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Api.Ai.Domain.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Api.Ai.Csharp.1.0.1.6\lib\net461\Api.Ai.Domain.Service.dll</HintPath>
+      <HintPath>..\..\packages\Api.Ai.Csharp.1.0.1.7\lib\net461\Api.Ai.Domain.Service.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Api.Ai.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Api.Ai.Csharp.1.0.1.6\lib\net461\Api.Ai.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\Api.Ai.Csharp.1.0.1.7\lib\net461\Api.Ai.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -89,6 +89,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\..\src\ApplicationService\Api.Ai.ApplicationService\bin\Release\Api.Ai.ApplicationService.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -66,7 +66,7 @@ namespace Api.Ai.ApplicationService
                     throw new Exception("Create entity error - Deserialize content is null or empty.");
                 }
 
-                if (responseBase.Status.IsSuccessStatusCode)
+                if (!responseBase.Status.IsSuccessStatusCode)
                 {
                     throw new Exception($"Create entity error - Invalid http status code '{responseBase.Status.Code}'");
                 }
@@ -90,7 +90,7 @@ namespace Api.Ai.ApplicationService
                     throw new Exception("Update entity error - Deserialize content is null or empty.");
                 }
 
-                if (responseBase.Status.IsSuccessStatusCode)
+                if (!responseBase.Status.IsSuccessStatusCode)
                 {
                     throw new Exception($"Update entity error - Invalid http status code '{responseBase.Status.Code}'");
                 }
@@ -111,7 +111,7 @@ namespace Api.Ai.ApplicationService
                     throw new Exception("Delete entity error - Deserialize content is null or empty.");
                 }
 
-                if (responseBase.Status.IsSuccessStatusCode)
+                if (!responseBase.Status.IsSuccessStatusCode)
                 {
                     throw new Exception($"Delete entity error - Invalid http status code '{responseBase.Status.Code}'");
                 }
@@ -133,7 +133,7 @@ namespace Api.Ai.ApplicationService
                     throw new Exception("Add entries specified entity error - Deserialize content is null or empty.");
                 }
 
-                if (responseBase.Status.IsSuccessStatusCode)
+                if (!responseBase.Status.IsSuccessStatusCode)
                 {
                     throw new Exception($"Add entries specified entity error  - Invalid http status code '{responseBase.Status.Code}'");
                 }
@@ -155,7 +155,7 @@ namespace Api.Ai.ApplicationService
                     throw new Exception("Updates entity entries error - Deserialize content is null or empty.");
                 }
 
-                if (responseBase.Status.IsSuccessStatusCode)
+                if (!responseBase.Status.IsSuccessStatusCode)
                 {
                     throw new Exception($"Updates entity entries error - Invalid http status code '{responseBase.Status.Code}'");
                 }

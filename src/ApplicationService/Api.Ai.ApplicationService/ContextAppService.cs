@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Api.Ai.ApplicationService.Extensions;
 using Api.Ai.Domain.Service.Serializer;
 using Api.Ai.Domain.DataTransferObject.Response;
+using System.Net.Http;
 
 namespace Api.Ai.ApplicationService
 {
@@ -28,13 +29,9 @@ namespace Api.Ai.ApplicationService
         {
             using (var httpClient = HttpClientFactory.Create(AccessToken))
             {
-                httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-                httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
-
-                var uri = new Uri($"{BaseUrl}/contexts?{sessionId}");                
-
-                var httpResponseMessage = await httpClient.GetAsync(uri);
-
+                var httpResponseMessage = await httpClient.PostAsync(new Uri($"{BaseUrl}/contexts?sessionId={sessionId}"),
+                    new StringContent("", Encoding.UTF8, "application/json"));
+                
                 var content = await httpResponseMessage.ToStringContentAsync();
 
                 var responseBase = ApiAiJson<ResponseBase>.Deserialize(content);
@@ -44,7 +41,7 @@ namespace Api.Ai.ApplicationService
                     throw new Exception("Delete contexts error - Deserialize content is null or empty.");
                 }
 
-                if (responseBase.Status.IsSuccessStatusCode)
+                if (!responseBase.Status.IsSuccessStatusCode)
                 {
                     throw new Exception($"Delete contexts error - Invalid http status code '{responseBase.Status.Code}'");
                 }
