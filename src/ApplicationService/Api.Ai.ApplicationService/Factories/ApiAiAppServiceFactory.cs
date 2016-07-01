@@ -68,7 +68,19 @@ namespace Api.Ai.ApplicationService.Factories
             entitiesAppService.Initializer(url, apiKey);
 
             return entitiesAppService;
+        }
 
+        public override IContextAppService CreateContextAppService(string url, string apiKey)
+        {
+            var contextAppService = _serviceProvider.GetService(typeof(ContextAppService)) as IContextAppService;
+
+            if (contextAppService == null)
+            {
+                throw new Exception("ServiceProvider get 'IContextAppService' service error.");
+            }
+
+            contextAppService.Initializer(url, apiKey);
+            return contextAppService;
         }
 
         #endregion

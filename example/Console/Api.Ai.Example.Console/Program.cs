@@ -28,6 +28,7 @@ namespace Api.Ai.Example.Console
             Query(container, apiAiAppServiceFactory);
             Tts(container, apiAiAppServiceFactory);
             Entity(container, apiAiAppServiceFactory);
+            Context(container, apiAiAppServiceFactory);
 
             System.Console.ReadLine();
         }
@@ -110,6 +111,20 @@ namespace Api.Ai.Example.Console
 
                     entityAppService.DeleteAsync(newEntity.Id).Wait();
                 }
+            }
+            catch (Exception ex)
+            {
+                System.Console.Write($"Error - {ex.ToString()}");
+            }
+        }
+
+        private static void Context(Container container, IApiAiAppServiceFactory apiAiAppServiceFactory)
+        {
+            var contextAppService = apiAiAppServiceFactory.CreateContextAppService("https://api.api.ai/v1", "YOUR_ACCESS_TOKEN");
+            
+            try
+            {
+                contextAppService.DeleteAsync("11").Wait();
             }
             catch (Exception ex)
             {

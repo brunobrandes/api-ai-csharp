@@ -53,12 +53,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiAiAppService.cs" />
+    <Compile Include="ContextAppService.cs" />
     <Compile Include="EntitiesAppService.cs" />
     <Compile Include="Extensions\HttpResponseMessageExtension.cs" />
     <Compile Include="Factories\AbstractApiAiAppServiceFactory.cs" />
     <Compile Include="Factories\ApiAiAppServiceFactory.cs" />
     <Compile Include="Factories\IApiAiAppServiceFactory.cs" />
     <Compile Include="Interfaces\IApiAiAppService.cs" />
+    <Compile Include="Interfaces\IContextAppService.cs" />
     <Compile Include="Interfaces\IEntitiesAppService.cs" />
     <Compile Include="Interfaces\IIntentsAppService.cs" />
     <Compile Include="Interfaces\IQueryAppService.cs" />

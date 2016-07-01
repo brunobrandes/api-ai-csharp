@@ -13,5 +13,6 @@ namespace Api.Ai.ApplicationService.Factories
         IQueryAppService CreateQueryAppService(string url, string apiKey);
         ITtsAppService CreateTtsAppService(string url, string apiKey);
         IEntitiesAppService CreateEntitiesAppService(string url, string apiKey);
+        IContextAppService CreateContextAppService(string url, string apiKey);
     }
 }
