@@ -10,8 +10,8 @@ using Api.Ai.Domain.Service.Factories;
 using Api.Ai.Domain.DataTransferObject.Extensions;
 using Api.Ai.Domain.Enum;
 using System.Net.Http;
-using Api.Ai.Domain.Service.Serializer;
 using Api.Ai.ApplicationService.Extensions;
+using Api.Ai.Domain.DataTransferObject.Serializer;
 
 namespace Api.Ai.ApplicationService
 {

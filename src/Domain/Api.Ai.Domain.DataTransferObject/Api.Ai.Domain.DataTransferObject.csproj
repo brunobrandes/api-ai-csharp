@@ -52,6 +52,7 @@
     <Compile Include="Extensions\QueryExtension.cs" />
     <Compile Include="Extensions\TtsExtension.cs" />
     <Compile Include="Parameters\DatePeriod.cs" />
+    <Compile Include="Request\OriginalRequest.cs" />
     <Compile Include="Response\EntitiesResponse.cs" />
     <Compile Include="Request\LocationRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,12 +60,21 @@
     <Compile Include="Request\RequestBase.cs" />
     <Compile Include="Request\TtsRequest.cs" />
     <Compile Include="Response\FulfillmentResponse.cs" />
+    <Compile Include="Response\Message\CardMessageResponse.cs" />
+    <Compile Include="Response\Message\ImageMessageResponse.cs" />
+    <Compile Include="Response\Message\BaseMessageResponse.cs" />
+    <Compile Include="Response\Message\PayloadMessageResponse.cs" />
+    <Compile Include="Response\Message\QuickReplyMessageResponse.cs" />
+    <Compile Include="Response\Message\TextMessageResponse.cs" />
     <Compile Include="Response\MetadataResponse.cs" />
     <Compile Include="Response\QueryResponse.cs" />
     <Compile Include="Response\ResponseBase.cs" />
     <Compile Include="Response\StatusResponse.cs" />
     <Compile Include="Response\TtsResponse.cs" />
     <Compile Include="Response\WebhookResponse.cs" />
+    <Compile Include="Serializer\ApiAiJson.cs" />
+    <Compile Include="Serializer\Converters\JsonCreationConverter.cs" />
+    <Compile Include="Serializer\Converters\MessageResponseConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Api.Ai.Domain.Enum\Api.Ai.Domain.Enum.csproj">
@@ -75,6 +85,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

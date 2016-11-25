@@ -43,7 +43,7 @@ namespace Api.Ai.Domain.DataTransferObject.Request
         /// <summary>
         /// If true, all current contexts in a session will be reset before the new ones are set. False by default.
         /// </summary>
-        public int ResetContexts { get; set; }
+        public bool ResetContexts { get; set; }
 
         /// <summary>
         /// Array of entities that replace developer defined entities for this request only. The entity(ies) need to exist in the developer console
@@ -59,6 +59,11 @@ namespace Api.Ai.Domain.DataTransferObject.Request
         /// Latitude and longitude values.
         /// </summary>
         public LocationRequest Location { get; set; }
+
+        /// <summary>
+        /// Full request coming from the integrated platform (Facebook Messenger, Slack, etc.) 
+        /// </summary>
+        public OriginalRequest OriginalRequest { get; set; }
 
         #endregion
     }

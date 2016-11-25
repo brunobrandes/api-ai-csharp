@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Ai.Domain.Service.Serializer
+namespace Api.Ai.Domain.DataTransferObject.Serializer
 {
     public class ApiAiJson<T>
     {
@@ -18,6 +18,7 @@ namespace Api.Ai.Domain.Service.Serializer
             NullValueHandling = NullValueHandling.Ignore,
             ContractResolver = new CamelCasePropertyNamesContractResolver(),
             Formatting = Formatting.Indented
+
         };
 
         #endregion

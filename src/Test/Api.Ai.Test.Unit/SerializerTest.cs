@@ -2,10 +2,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Api.Ai.Domain.DataTransferObject.Request;
 using Api.Ai.Domain.DataTransferObject.Response;
-using Api.Ai.Domain.Service.Serializer;
 using System.Collections.Generic;
 using Api.Ai.Domain.DataTransferObject.Parameters;
 using Api.Ai.Domain.DataTransferObject;
+using Api.Ai.Domain.DataTransferObject.Response.Message;
+using Api.Ai.Domain.DataTransferObject.Serializer;
 
 namespace Api.Ai.Test.Unit
 {
@@ -34,6 +35,14 @@ namespace Api.Ai.Test.Unit
                 Timestamp = DateTime.Now,
                 Result = new QueryResult
                 {
+                    Fulfillment = new FulfillmentResponse
+                    {
+                        Speech = string.Empty,
+                        Messages = new BaseMessageResponse[1]
+                        {
+                            new TextMessageResponse { Speech = "It's working." }
+                        }
+                    },
                     Contexts = new Context[1]
                     {
                         new Context
@@ -92,9 +101,13 @@ namespace Api.Ai.Test.Unit
 
             var deserializeQueryResponse = ApiAiJson<QueryResponse>.Deserialize(json);
 
+            json = ApiAiJson<QueryResponse>.Serialize(deserializeQueryResponse);
+
+            var a = string.Empty;
+            
             Assert.IsTrue(queryResponse.Id == deserializeQueryResponse.Id);
         }
-        
+
         [TestMethod]
         public void Serialize_Deserialize_WebhookResponse()
         {

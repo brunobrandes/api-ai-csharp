@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Api.Ai.ApplicationService.Extensions;
-using Api.Ai.Domain.Service.Serializer;
 using Api.Ai.Domain.DataTransferObject.Response;
 using System.Net.Http;
+using Api.Ai.Domain.DataTransferObject.Serializer;
 
 namespace Api.Ai.ApplicationService
 {

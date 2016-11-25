@@ -8,12 +8,6 @@ namespace Api.Ai.Domain.DataTransferObject
 {
     public static class ApiAiVersion
     {
-        public static string Default
-        {
-            get
-            {
-                return "20150910";
-            }
-        }
+        public const string Default = "20150910";
     }
 }

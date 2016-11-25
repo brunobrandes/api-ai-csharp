@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Api.Ai.Domain.DataTransferObject.Response.Message;
+using Api.Ai.Domain.DataTransferObject.Serializer.Converters;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Api.Ai.Domain.DataTransferObject.Response
 {
+    [Serializable]
     public class FulfillmentResponse
     {
         #region Public Properties
@@ -16,10 +20,11 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         public string Speech { get; set; }
 
         /// <summary>
-        /// Source of the fulfillment / data, e.g. "Wikipedia". Applies only when Domains are enabled for the agent
-        /// </summary>
-        public string Source { get; set; }
-
+        /// Array of message objects
+        /// </summary>       
+        [JsonConverter(typeof(MessageResponseConverter))]
+        public BaseMessageResponse[] Messages { get; set; }
+        
         #endregion
 
     }

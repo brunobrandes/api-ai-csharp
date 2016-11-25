@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Api.Ai.Domain.DataTransferObject.Serializer.Converters;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Api.Ai.Domain.DataTransferObject.Response
 {
+    [Serializable]
     public class QueryResponse : ResponseBase
     {
         #region Public Properties
@@ -15,6 +18,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         #endregion
     }
 
+    [Serializable]
     public class QueryResult
     {
         #region Public Properties
@@ -30,25 +34,20 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         public string ResolvedQuery { get; set; }
 
         /// <summary>
-        /// Deprecated
-        /// </summary>
-        public string Speech { get; set; }
-
-        /// <summary>
-        /// Matching score for the intent
-        /// </summary>
-        public float Score { get; set; }
-
-        /// <summary>
         /// An action to take.
         /// </summary>
         public string Action { get; set; }
 
         /// <summary>
+        /// true if the triggered intent has required parameters and not all the required parameter values have been collected
+        /// false if all required parameter values have been collected or if the triggered intent doesn't containt any required parameters
+        /// </summary>
+        public bool ActionIncomplete { get; set; }
+
+        /// <summary>
         /// Parameters to be used by the action.
         /// </summary>
         public Dictionary<string, object> Parameters { get; set; }
-
 
         /// <summary>
         /// Array of context objects with the fields "name", "parameters", "lifespan".
@@ -60,6 +59,11 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// </summary>
         public FulfillmentResponse Fulfillment { get; set; }
 
+        /// <summary>
+        /// Matching score for the intent
+        /// </summary>
+        public float Score { get; set; }
+                
         /// <summary>
         /// Contains data on intents and contexts.
         /// </summary>
@@ -107,7 +111,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
             {
                 throw new KeyNotFoundException($"Context '{name}' and parameter key '{key}' not found.");
             }
-            
+
             return result;
         }
 
@@ -135,7 +139,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
 
             throw new KeyNotFoundException($"Parameter '{key}' not found.");
         }
-        
+
         #endregion
     }
 }

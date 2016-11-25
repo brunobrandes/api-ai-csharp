@@ -15,7 +15,9 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// </summary>
         public string IntentId { get; set; }
 
-
+        /// <summary>
+        /// Indicates wheather webhook functionaly is enabled in the triggered intent.
+        /// </summary>
         public bool WebhookUsed { get; set; }
 
         /// <summary>
