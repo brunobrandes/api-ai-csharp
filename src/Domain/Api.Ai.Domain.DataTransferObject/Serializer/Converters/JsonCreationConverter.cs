@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Api.Ai.Domain.DataTransferObject.Serializer.Converters
 {
-    public abstract class JsonCreationArrayConverter<T> : JsonConverter
+    public abstract class JsonCreationConverter<T> : JsonConverter
     {
-        protected abstract T[] Create(Type objectType, JArray jArray);
+        protected abstract T Create(Type objectType, JObject jObject);
 
         public override bool CanConvert(Type objectType)
         {
@@ -20,12 +20,9 @@ namespace Api.Ai.Domain.DataTransferObject.Serializer.Converters
         //This method never gets called
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var jArray = JArray.Load(reader);
-
-            var target = Create(objectType, jArray);
-
-            serializer.Populate(jArray.CreateReader(), target);
-
+            var jsonObject = JObject.Load(reader);
+            var target = Create(objectType, jsonObject);
+            serializer.Populate(jsonObject.CreateReader(), target);
             return target;
 
         }
