@@ -23,8 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{4F318574-5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Ai.Test.Unit", "Test\Api.Ai.Test.Unit\Api.Ai.Test.Unit.csproj", "{0F4FA7C3-3388-4F24-AC1E-A3E440C3C982}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Ai.Test.Console", "Test\Api.Ai.Test.Console\Api.Ai.Test.Console.csproj", "{93DED784-F21D-4EDA-B6C7-B93FDD6FA8E3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,10 +53,6 @@ Global
 		{0F4FA7C3-3388-4F24-AC1E-A3E440C3C982}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F4FA7C3-3388-4F24-AC1E-A3E440C3C982}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F4FA7C3-3388-4F24-AC1E-A3E440C3C982}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93DED784-F21D-4EDA-B6C7-B93FDD6FA8E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93DED784-F21D-4EDA-B6C7-B93FDD6FA8E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93DED784-F21D-4EDA-B6C7-B93FDD6FA8E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93DED784-F21D-4EDA-B6C7-B93FDD6FA8E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +64,5 @@ Global
 		{7D744B12-250D-47A6-99F4-5BBDE1FB8AE6} = {596634F2-D16D-482E-9DC8-8D70A077D12D}
 		{6848EDCA-4533-4BFF-AEC9-C8F984B74521} = {3D6C1EB3-C1B5-467A-8099-781C3EA6AEFD}
 		{0F4FA7C3-3388-4F24-AC1E-A3E440C3C982} = {4F318574-5A41-4D90-8992-9442C0BE809F}
-		{93DED784-F21D-4EDA-B6C7-B93FDD6FA8E3} = {4F318574-5A41-4D90-8992-9442C0BE809F}
 	EndGlobalSection
 EndGlobal
