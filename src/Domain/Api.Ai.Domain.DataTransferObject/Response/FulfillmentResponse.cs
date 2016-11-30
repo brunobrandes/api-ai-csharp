@@ -22,7 +22,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
         /// <summary>
         /// Array of message objects
         /// </summary>       
-        [JsonConverter(typeof(MessageResponseConverter))]
+        [JsonConverter(typeof(MessageCollectionConverter))]
         public BaseMessageResponse[] Messages { get; set; }
         
         #endregion

@@ -103,8 +103,8 @@ namespace Api.Ai.Test.Unit
 
             json = ApiAiJson<QueryResponse>.Serialize(deserializeQueryResponse);
 
-            var a = string.Empty;
-            
+            Assert.IsTrue(deserializeQueryResponse.Result.Fulfillment.Messages.Length > 0);
+
             Assert.IsTrue(queryResponse.Id == deserializeQueryResponse.Id);
         }
 

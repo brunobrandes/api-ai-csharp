@@ -74,7 +74,7 @@
     <Compile Include="Response\WebhookResponse.cs" />
     <Compile Include="Serializer\ApiAiJson.cs" />
     <Compile Include="Serializer\Converters\JsonCreationConverter.cs" />
-    <Compile Include="Serializer\Converters\MessageResponseConverter.cs" />
+    <Compile Include="Serializer\Converters\MessageCollectionConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Api.Ai.Domain.Enum\Api.Ai.Domain.Enum.csproj">

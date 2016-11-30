@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Api.Ai.Domain.DataTransferObject.Response.Message
 {
-    [Serializable]
+    [JsonObject]
     public abstract class BaseMessageResponse
     {
         public Domain.Enum.Type Type { get; set; }
