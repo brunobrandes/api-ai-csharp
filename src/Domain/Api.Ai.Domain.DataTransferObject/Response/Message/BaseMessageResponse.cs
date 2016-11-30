@@ -12,7 +12,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response.Message
     [JsonObject]
     public abstract class BaseMessageResponse
     {
-        public Domain.Enum.Type Type { get; set; }
+        public int Type { get; set; }
         
         public abstract void SetMessageType();
 

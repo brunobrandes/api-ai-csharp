@@ -33,7 +33,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response.Message
 
         public override void SetMessageType()
         {
-            this.Type = Enum.Type.Payload;
+            this.Type = (int)Enum.Type.Payload;
         }
 
         #endregion

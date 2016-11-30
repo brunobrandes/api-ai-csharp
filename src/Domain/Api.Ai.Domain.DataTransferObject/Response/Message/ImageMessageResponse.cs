@@ -31,7 +31,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response.Message
 
         public override void SetMessageType()
         {
-            this.Type = Enum.Type.Text;
+            this.Type = (int)Enum.Type.Text;
         }
 
         #endregion
