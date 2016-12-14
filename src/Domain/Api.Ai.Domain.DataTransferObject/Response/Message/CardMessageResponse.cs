@@ -31,6 +31,11 @@ namespace Api.Ai.Domain.DataTransferObject.Response.Message
         public string Subtitle { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public string ImageUrl { get; set; }
+
+        /// <summary>
         /// Array of objects corresponding to card buttons.
         /// </summary>
         public CardMessageResponseButton[] Buttons { get; set; }
