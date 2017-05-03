@@ -97,6 +97,7 @@ The solution structure (.sln) is based in [The Onion Architecture](http://bit.ly
   ```csharp
   var queryRequest = new QueryRequest
   {
+    SessionId = "1",
     Query = new string[] { "Hello, I want a pizza" },
     Lang = Domain.Enum.Language.English
   };
