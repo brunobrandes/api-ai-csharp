@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Api.Ai.Domain.DataTransferObject.Response;
+using Api.Ai.Domain.DataTransferObject.Serializer;
+using Api.Ai.Domain.Service.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,23 +17,37 @@ namespace Api.Ai.ApplicationService.Extensions
     {
         #region Private Methods
 
-        private static void ValidateResponse(HttpResponseMessage httpResponseMessage)
+        private static async Task ValidateResponse(HttpResponseMessage httpResponseMessage)
         {
             if (!httpResponseMessage.IsSuccessStatusCode)
             {
-                throw new HttpResponseException(new HttpResponseMessage
+                var errorDetails = string.Empty;
+
+                if (httpResponseMessage.Content != null)
                 {
-                    StatusCode = httpResponseMessage.StatusCode
-                });
+                    var content = await httpResponseMessage.Content.ReadAsStringAsync();
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        try
+                        {
+                            var queryResponse = ApiAiJson<QueryResponse>.Deserialize(content);
+
+                            if (queryResponse != null && queryResponse.Status != null && !string.IsNullOrEmpty(queryResponse.Status.ErrorDetails))
+                            {
+                                errorDetails = queryResponse.Status.ErrorDetails;
+                            }
+                        }
+                        catch { }
+                    }
+                }
+
+                throw new ApiAiException(httpResponseMessage.StatusCode, !string.IsNullOrEmpty(errorDetails) ? errorDetails : "Http response message error.");
             }
 
             if (httpResponseMessage.Content == null)
             {
-                throw new HttpResponseException(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.NoContent,
-                    Content = new StringContent("api.ai conent returned is null.")
-                });
+                throw new ApiAiException(httpResponseMessage.StatusCode, "api.ai content returned is null.");
             }
         }
 
@@ -40,17 +57,13 @@ namespace Api.Ai.ApplicationService.Extensions
 
         public static async Task<string> ToStringContentAsync(this HttpResponseMessage httpResponseMessage)
         {
-            ValidateResponse(httpResponseMessage);
+            await ValidateResponse(httpResponseMessage);
 
             var content = await httpResponseMessage.Content.ReadAsStringAsync();
 
             if (string.IsNullOrEmpty(content))
             {
-                throw new HttpResponseException(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.NoContent,
-                    Content = new StringContent("api.ai string conent returned null or empty.")
-                });
+                throw new ApiAiException(HttpStatusCode.Conflict, "api.ai string content returned null or empty.");
             }
 
             return content;
@@ -58,17 +71,13 @@ namespace Api.Ai.ApplicationService.Extensions
 
         public static async Task<Stream> ToStreamContentAsync(this HttpResponseMessage httpResponseMessage)
         {
-            ValidateResponse(httpResponseMessage);
+            await ValidateResponse(httpResponseMessage);
 
             var content = await httpResponseMessage.Content.ReadAsStreamAsync();
 
             if (content == null || content.Length == 0)
             {
-                throw new HttpResponseException(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.NoContent,
-                    Content = new StringContent("api.ai stream conent returned null.")
-                });
+                throw new ApiAiException(HttpStatusCode.Conflict, "api.ai stream content returned null.");
             }
 
             return content;

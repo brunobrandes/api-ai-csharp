@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Api.Ai.Csharp</id>
-        <version>1.0.1.9</version>
+        <version>1.0.2.0</version>
         <title>Api.Ai.Csharp</title>
         <authors>Bruno Brandes</authors>
         <owners>Bruno Brandes</owners>
@@ -10,13 +10,13 @@
         <projectUrl>https://github.com/brunobrandes/api-ai-csharp</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A C# wrapper for the api.ai</description>
-        <releaseNotes>Support all fulfillment message type</releaseNotes>
+        <releaseNotes>Create api.ai exception - Show api error details.</releaseNotes>
         <copyright>Bruno Brandes</copyright>
         <language>pt-BR</language>
         <dependencies>
             <group targetFramework=".NETFramework4.6.1">
-                <dependency id="Newtonsoft.Json" version="8.0.3" />
                 <dependency id="Microsoft.AspNet.WebApi" version="5.2.3" />
+                <dependency id="Newtonsoft.Json" version="10.0.2" />
             </group>
         </dependencies>
     </metadata>

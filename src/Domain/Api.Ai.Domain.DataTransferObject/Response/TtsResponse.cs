@@ -73,7 +73,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response
                     // Try to create the directory.
                     DirectoryInfo di = Directory.CreateDirectory(path);
                 }
-                
+
                 if (_bytes != null && _bytes.Count() > 0)
                 {
                     var fileName = $"{Guid.NewGuid().ToString()}.wav";
@@ -102,7 +102,12 @@ namespace Api.Ai.Domain.DataTransferObject.Response
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            if (_stream != null)
+            {
+                _stream.Close();
+            }
+
+            GC.SuppressFinalize(this);
         }
 
         #endregion

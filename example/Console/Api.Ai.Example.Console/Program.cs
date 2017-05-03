@@ -2,8 +2,8 @@
 using Api.Ai.Domain.DataTransferObject;
 using Api.Ai.Domain.DataTransferObject.Request;
 using Api.Ai.Domain.DataTransferObject.Response;
+using Api.Ai.Domain.DataTransferObject.Serializer;
 using Api.Ai.Domain.Service.Factories;
-using Api.Ai.Domain.Service.Serializer;
 using Api.Ai.Infrastructure.Factories;
 using SimpleInjector;
 using System;
@@ -43,6 +43,7 @@ namespace Api.Ai.Example.Console
             ///Create query request
             var queryRequest = new QueryRequest
             {
+                SessionId = "1",
                 Query = new string[] { "Hello, I want a pizza" },
                 Lang = Domain.Enum.Language.English
             };

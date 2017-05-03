@@ -12,6 +12,8 @@ using Api.Ai.Domain.Enum;
 using System.Net.Http;
 using Api.Ai.ApplicationService.Extensions;
 using Api.Ai.Domain.DataTransferObject.Serializer;
+using Api.Ai.Domain.Service.Exceptions;
+using System.Net;
 
 namespace Api.Ai.ApplicationService
 {
@@ -63,12 +65,12 @@ namespace Api.Ai.ApplicationService
 
                 if (responseBase == null)
                 {
-                    throw new Exception("Create entity error - Deserialize content is null or empty.");
+                    throw new ApiAiException(HttpStatusCode.Conflict, "Create entity error - Deserialize content is null or empty.");
                 }
 
                 if (!responseBase.Status.IsSuccessStatusCode)
                 {
-                    throw new Exception($"Create entity error - Invalid http status code '{responseBase.Status.Code}'");
+                    throw new ApiAiException(responseBase.Status.Code, "Create entity error.");
                 }
 
                 return responseBase.Id;
@@ -87,12 +89,12 @@ namespace Api.Ai.ApplicationService
 
                 if (responseBase == null)
                 {
-                    throw new Exception("Update entity error - Deserialize content is null or empty.");
+                    throw new ApiAiException(HttpStatusCode.Conflict, "Update entity error - Deserialize content is null or empty.");
                 }
 
                 if (!responseBase.Status.IsSuccessStatusCode)
                 {
-                    throw new Exception($"Update entity error - Invalid http status code '{responseBase.Status.Code}'");
+                    throw new ApiAiException(responseBase.Status.Code, "Update entity error.");
                 }
             }
         }
@@ -108,12 +110,12 @@ namespace Api.Ai.ApplicationService
 
                 if (responseBase == null)
                 {
-                    throw new Exception("Delete entity error - Deserialize content is null or empty.");
+                    throw new ApiAiException(HttpStatusCode.Conflict, "Delete entity error - Deserialize content is null or empty.");
                 }
 
                 if (!responseBase.Status.IsSuccessStatusCode)
                 {
-                    throw new Exception($"Delete entity error - Invalid http status code '{responseBase.Status.Code}'");
+                    throw new ApiAiException(responseBase.Status.Code, "Delete entity error.");
                 }
             }
         }
@@ -130,12 +132,12 @@ namespace Api.Ai.ApplicationService
 
                 if (responseBase == null)
                 {
-                    throw new Exception("Add entries specified entity error - Deserialize content is null or empty.");
+                    throw new ApiAiException(HttpStatusCode.Conflict, "Add entries specified entity error - Deserialize content is null or empty.");
                 }
 
                 if (!responseBase.Status.IsSuccessStatusCode)
                 {
-                    throw new Exception($"Add entries specified entity error  - Invalid http status code '{responseBase.Status.Code}'");
+                    throw new ApiAiException(responseBase.Status.Code, "Add entries specified entity error.");
                 }
             }
         }
@@ -152,12 +154,12 @@ namespace Api.Ai.ApplicationService
 
                 if (responseBase == null)
                 {
-                    throw new Exception("Updates entity entries error - Deserialize content is null or empty.");
+                    throw new ApiAiException(HttpStatusCode.Conflict, "Updates entity entries error - Deserialize content is null or empty.");
                 }
 
                 if (!responseBase.Status.IsSuccessStatusCode)
                 {
-                    throw new Exception($"Updates entity entries error - Invalid http status code '{responseBase.Status.Code}'");
+                    throw new ApiAiException(responseBase.Status.Code, "Updates entity entries error.");
                 }
             }
         }
