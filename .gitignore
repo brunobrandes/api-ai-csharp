@@ -21,6 +21,7 @@ bld/
 [Nn]ode_modules/
 # Roslyn cache directories
 *.ide/
+.vs/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/

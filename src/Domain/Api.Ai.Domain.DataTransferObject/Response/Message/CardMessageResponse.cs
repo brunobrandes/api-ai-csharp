@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,10 +45,10 @@ namespace Api.Ai.Domain.DataTransferObject.Response.Message
         #endregion
 
         #region MessageResponse Members
-
+        
         public override void SetMessageType()
         {
-            this.Type = (int)Enum.Type.Text;
+            this.Type = (int)Enum.Type.Card;
         }
 
         #endregion

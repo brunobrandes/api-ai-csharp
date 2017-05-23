@@ -36,7 +36,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response.Message
 
         public override void SetMessageType()
         {
-            this.Type = (int)Enum.Type.Text;
+            this.Type = (int)Enum.Type.QuickReply;
         }
 
         #endregion

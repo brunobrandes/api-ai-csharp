@@ -38,9 +38,10 @@ namespace Api.Ai.Test.Unit
                     Fulfillment = new FulfillmentResponse
                     {
                         Speech = string.Empty,
-                        Messages = new BaseMessageResponse[1]
+                        Messages = new BaseMessageResponse[2]
                         {
-                            new TextMessageResponse { Speech = "It's working." }
+                            new TextMessageResponse { Speech = "It's working." },
+                            new CardMessageResponse { Title = "title", Subtitle = "subtitle", ImageUrl = "http://127.0.0.1"  }
                         }
                     },
                     Contexts = new Context[1]
@@ -82,7 +83,6 @@ namespace Api.Ai.Test.Unit
             var json = ApiAiJson<QueryRequest>.Serialize(queryRequest);
 
             Assert.IsTrue(!string.IsNullOrWhiteSpace(json) && json.Contains("\"lang\": \"en\""));
-
             var deserializeQueryRequest = ApiAiJson<QueryRequest>.Deserialize(json);
 
             Assert.IsTrue(queryRequest.Query[0] == deserializeQueryRequest.Query[0]);
@@ -103,7 +103,7 @@ namespace Api.Ai.Test.Unit
 
             json = ApiAiJson<QueryResponse>.Serialize(deserializeQueryResponse);
 
-            Assert.IsTrue(deserializeQueryResponse.Result.Fulfillment.Messages.Length > 0);
+            Assert.IsTrue(deserializeQueryResponse.Result.Fulfillment.Messages.Length > 0 && json.Contains("\"title\": \"title\"") && json.Contains("\"subtitle\": \"subtitle\""));
 
             Assert.IsTrue(queryResponse.Id == deserializeQueryResponse.Id);
         }

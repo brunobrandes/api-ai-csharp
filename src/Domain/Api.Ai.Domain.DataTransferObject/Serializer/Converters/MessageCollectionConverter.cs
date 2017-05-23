@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Api.Ai.Domain.DataTransferObject.Serializer;
 
 namespace Api.Ai.Domain.DataTransferObject.Serializer.Converters
 {
@@ -33,19 +34,19 @@ namespace Api.Ai.Domain.DataTransferObject.Serializer.Converters
                     switch (messageType)
                     {
                         case Domain.Enum.Type.Text:
-                            result[i] = new TextMessageResponse();
+                            result[i] = ApiAiJson<TextMessageResponse>.Deserialize(jArray[i].ToString());
                             break;
 
                         case Domain.Enum.Type.Card:
-                            result[i] = new CardMessageResponse();
+                            result[i] = ApiAiJson<CardMessageResponse>.Deserialize(jArray[i].ToString());
                             break;
 
                         case Domain.Enum.Type.QuickReply:
-                            result[i] = new QuickReplyMessageResponse();
+                            result[i] = ApiAiJson<QuickReplyMessageResponse>.Deserialize(jArray[i].ToString());
                             break;
 
                         case Domain.Enum.Type.Image:
-                            result[i] = new ImageMessageResponse();
+                            result[i] = ApiAiJson<ImageMessageResponse>.Deserialize(jArray[i].ToString());
                             break;
 
                         default:
@@ -54,7 +55,7 @@ namespace Api.Ai.Domain.DataTransferObject.Serializer.Converters
                     }
                 }
             }
-            
+
             return result;
         }
 
