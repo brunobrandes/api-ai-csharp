@@ -26,9 +26,9 @@ namespace Api.Ai.Example.Console
             var apiAiAppServiceFactory = container.GetInstance<IApiAiAppServiceFactory>();
 
             Query(container, apiAiAppServiceFactory);
-            Tts(container, apiAiAppServiceFactory);
-            Entity(container, apiAiAppServiceFactory);
-            Context(container, apiAiAppServiceFactory);
+            //Tts(container, apiAiAppServiceFactory);
+            //Entity(container, apiAiAppServiceFactory);
+            //Context(container, apiAiAppServiceFactory);
 
             System.Console.ReadLine();
         }
