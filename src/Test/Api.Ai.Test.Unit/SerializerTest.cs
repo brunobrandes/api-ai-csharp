@@ -38,10 +38,11 @@ namespace Api.Ai.Test.Unit
                     Fulfillment = new FulfillmentResponse
                     {
                         Speech = string.Empty,
-                        Messages = new BaseMessageResponse[2]
+                        Messages = new BaseMessageResponse[3]
                         {
                             new TextMessageResponse { Speech = "It's working." },
-                            new CardMessageResponse { Title = "title", Subtitle = "subtitle", ImageUrl = "http://127.0.0.1"  }
+                            new CardMessageResponse { Title = "title", Subtitle = "subtitle", ImageUrl = "http://127.0.0.1"  },
+                            new PayloadMessageResponse {Payload = "{ \"object\":  }" }
                         }
                     },
                     Contexts = new Context[1]
@@ -51,7 +52,7 @@ namespace Api.Ai.Test.Unit
                             Name = "context-1",
                             Parameters = new Dictionary<string, object>()
                             {
-                                {  "parameter-key-1", "parameter-valeu-1" },
+                                { "parameter-key-1", "parameter-valeu-1" },
                                 { "parameter-key-2",  new DatePeriod {  EndDate = new Date { Calendar = 1470841200000 }, StartDate = new Date { Calendar = 1470841200000 } } }
                             }
                         }
@@ -103,7 +104,8 @@ namespace Api.Ai.Test.Unit
 
             json = ApiAiJson<QueryResponse>.Serialize(deserializeQueryResponse);
 
-            Assert.IsTrue(deserializeQueryResponse.Result.Fulfillment.Messages.Length > 0 && json.Contains("\"title\": \"title\"") && json.Contains("\"subtitle\": \"subtitle\""));
+            Assert.IsTrue(deserializeQueryResponse.Result.Fulfillment.Messages.Length > 0 && json.Contains("\"title\": \"title\"")
+                && json.Contains("\"subtitle\": \"subtitle\"") && json.Contains("object"));
 
             Assert.IsTrue(queryResponse.Id == deserializeQueryResponse.Id);
         }

@@ -25,7 +25,7 @@ namespace Api.Ai.Domain.DataTransferObject.Response.Message
         /// <summary>
         /// Developer defined JSON. It is sent without modifications
         /// </summary>
-        public string Payload { get; set; }
+        public object Payload { get; set; }
 
         #endregion
 

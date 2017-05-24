@@ -49,6 +49,10 @@ namespace Api.Ai.Domain.DataTransferObject.Serializer.Converters
                             result[i] = ApiAiJson<ImageMessageResponse>.Deserialize(jArray[i].ToString());
                             break;
 
+                        case Domain.Enum.Type.Payload:
+                            result[i] = ApiAiJson<PayloadMessageResponse>.Deserialize(jArray[i].ToString());
+                            break;
+
                         default:
                             result[i] = null;
                             break;
