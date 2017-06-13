@@ -29,11 +29,10 @@ namespace Api.Ai.ApplicationService
         {
             using (var httpClient = HttpClientFactory.Create(AccessToken))
             {
-                var httpResponseMessage = await httpClient.PostAsync(new Uri($"{BaseUrl}/contexts?sessionId={sessionId}"),
-                    new StringContent("", Encoding.UTF8, "application/json"));
-                
-                var content = await httpResponseMessage.ToStringContentAsync();
+                var httpResponseMessage = await httpClient.DeleteAsync(new Uri($"{BaseUrl}/contexts?sessionId={sessionId}"));
 
+                var content = await httpResponseMessage.ToStringContentAsync();
+                
                 var responseBase = ApiAiJson<ResponseBase>.Deserialize(content);
 
                 if (responseBase == null)
